@@ -17,6 +17,21 @@
                         </tr>
                         </thead>
                         <tbody>
+
+                        @foreach($usersActive as $user)
+                            <tr class="align-middle" >
+                                <td>{{$user->id}}</td>
+                                <td style="background-color: #7fdbda80;">
+                                    <p >{{$user->name}}</p>
+                                </td>
+                                <td>
+
+                                    <a href="{{route('admin.user.chat', $user->id)}}" type="submit"
+                                       class="btn btn-dark">Chat</a>
+
+                                </td>
+                            </tr>
+                        @endforeach
                         @foreach($users as $user)
                             <tr class="align-middle">
                                 <td>{{$user->id}}</td>

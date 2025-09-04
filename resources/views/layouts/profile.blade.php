@@ -55,21 +55,35 @@
                 <img class="account__img" style="border-radius: 100px" src="{{ auth()->user()->avatar ? asset('storage/' . auth()->user()->avatar) : '/img/user.png' }}" alt="">
                 <div>
                     <h5 class="account__name">{{auth()->user()->name}}</h5>
-                    <h6 class="account__status">Status: <span>Verified</span></h6>
+                    <h6 class="account__status">Status: <span>Not Verified</span></h6>
                 </div>
             </div>
             <form class="account__ul" action="{{route('logout')}}" method="post">
                 @csrf
-                <a href="{{route('profile.cart')}}" class="account__item {{request()->is('profile/cart') ? 'active' : ''}}">My Cart</a>
-                <a href="{{route('profile.referral')}}" class="account__item" {{request()->is('profile/referral') ? 'active' : ''}}>Referral Program</a>
-                <a href="{{route('profile.status')}}" class="account__item" {{request()->is('profile/status') ? 'active' : ''}}>Account Status</a>
-                <a href="{{route('profile.support')}}" class="account__item" {{request()->is('profile/support') ? 'active' : ''}}>Support</a>
-                <a href="{{route('profile.balance')}}" class="account__item" {{request()->is('profile/balance') ? 'active' : ''}}>Balance</a>
-                <a href="{{route('profile.edit')}}" class="account__item {{request()->is('profile/edit') ? 'active' : ''}}">Edit Profile</a>
+                <a href="{{route('profile.cart')}}" class="account__item {{request()->is('profile/cart') ? 'active' : ''}}">
+                    <img style="width: 16px; margin-top: 3px; margin-right: 5px" src="{{ asset('./img/cart.svg')}}" alt="">
+                    My Cart</a>
+                <a href="{{route('profile.referral')}}" class="account__item {{request()->is('profile/referral') ? 'active' : ''}}">
+                    <img style="width: 16px; margin-top: 3px; margin-right: 5px" src="{{ asset('./img/ref.svg')}}" alt="">
+                    Referral Program</a>
+                <a href="{{route('profile.status')}}" class="account__item {{request()->is('profile/status') ? 'active' : ''}}">
+                    <img style="width: 16px; margin-top: 3px; margin-right: 5px" src="{{ asset('./img/star.svg')}}" alt="">
+                    Account Status</a>
+                <a href="{{route('profile.support')}}" class="account__item {{request()->is('profile/support') ? 'active' : ''}}">
+                    <img style="width: 16px; margin-top: 3px; margin-right: 5px" src="{{ asset('./img/message.svg')}}" alt="">
+                    Support</a>
+                <a href="{{route('profile.balance')}}" class="account__item {{request()->is('profile/balance') ? 'active' : ''}}">
+                    <img style="width: 16px; margin-top: 3px; margin-right: 5px" src="{{ asset('./img/message.svg')}}" alt="">
+                    Balance</a>
+                <a href="{{route('profile.edit')}}" class="account__item {{request()->is('profile/edit') ? 'active' : ''}}">
+                    <img style="width: 16px; margin-top: 3px; margin-right: 5px" src="{{ asset('./img/edit.svg')}}" alt="">
+                    Edit Profile</a>
 
                 <button  class="account__item" style="
               text-align: left; margin-top: 20px; color: #222222;
-                ">Log out</button>
+                ">
+                    <img style="width: 16px; margin-top: 3px; margin-right: 5px" src="{{ asset('./img/logout.svg')}}" alt="">
+                    Log out</button>
             </form>
         </div>
         <div class="account__right">
@@ -87,16 +101,20 @@
             </div>
             <div class="social__right">
                 <a class="social__item">
-                    Telegram
+                    <img src={{ asset('/img/tg.svg')}} alt="">
+                    <p>Telegram</p>
                 </a>
                 <a class="social__item">
-                    YouTube
+                    <img src={{ asset('/img/yt.svg')}} alt="">
+                    <p>YouTube</p>
                 </a>
                 <a class="social__item">
-                    Reddit
+                    <img src={{ asset('/img/reddit.svg')}} alt="">
+                    <p>Reddit</p>
                 </a>
                 <a class="social__item">
-                    X (Twitter)
+                    <img src={{ asset('/img/x.svg')}} alt="">
+                    <p>X (Twitter)</p>
                 </a>
             </div>
         </div>
@@ -122,7 +140,9 @@
 
 
         </div>
-        <a href="#header" class="footer__btn"></a>
+        <a href="#header" class="footer__btn">
+            <img src="{{ asset('./img/arrow-up.svg')}}" alt="" style="display:block; margin: 0 auto; padding-top: 14px;">
+        </a>
     </div>
     <div class="footer__bottom">
         <div class="container">

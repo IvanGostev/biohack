@@ -113,18 +113,29 @@ class MainController extends Controller
             'product_id' => $all['product_id'],
             'text' => $all['text'],
             'user_id' => auth()->user()->id,
-
         ]);
 
-        $files = $all['images'];
-        foreach ($files as $file) {
-            $patch = $file->store('reviews', 'public');
-            ProductReviewImage::create([
-                'patch' => $patch,
-                'product_review_id' => $pr->id,
-            ]);
-        }
 
+        if (isset($all['images'])) {
+            $files = $all['images'];
+            foreach ($files as $file) {
+                $patch = $file->store('reviews', 'public');
+                ProductReviewImage::create([
+                    'patch' => $patch,
+                    'product_review_id' => $pr->id,
+                ]);
+            }
+        }
         return redirect()->route('product', $all['product_id']);
     }
+
+    public function review_delete(Request $request)
+    {
+        $review = ProductReview::where('id', $request->review_id)->first();
+        if ($review and auth()->user()->id == $review->user()->id) {
+            $review->delete();
+        }
+        return back();
+    }
+
 }

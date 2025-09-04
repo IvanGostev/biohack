@@ -102,46 +102,57 @@
                     <h6 class="reviews__title">Customer Reviews</h6>
                     <h6 class="reviews__reviews">{{$product->countReviews()}} Reviews</h6>
                 </div>
-                <form  class="reviews__right" href="#reviews">
-                    <button class="reviews__btn" name="writeReview" value="display" style="display: {{$writeReview == 'display' ? 'none' : 'display'}}">WRITE A REVIEW</button>
-                    <button style="display: {{$writeReview == 'display' ? 'display' : 'none'}}" class="reviews__btn" name="writeReview" value="none">HIDE THE FORM</button>
+                <form class="reviews__right" href="#reviews">
+                    <button class="reviews__btn" name="writeReview" value="display"
+                            style="display: {{$writeReview == 'display' ? 'none' : 'display'}}">WRITE A REVIEW
+                    </button>
+                    <button style="display: {{$writeReview == 'display' ? 'display' : 'none'}}" class="reviews__btn"
+                            name="writeReview" value="none">HIDE THE FORM
+                    </button>
                 </form>
             </div>
             <div class="reviews__main" id="reviews">
                 @if($writeReview == 'display')
-                <form method="post" class="review-create" style="width: 100%; gap: 10px; display: flex; flex-direction: column; margin-bottom: 60px
+                    <form method="post" class="review-create" style="width: 100%; gap: 10px; display: flex; flex-direction: column; margin-bottom: 60px
                     " enctype='multipart/form-data' action="{{route('review')}}">
-                    @csrf
-                    <input type="text" name="product_id" hidden value="{{$product->id}}">
-                    <div style="width: 100%; ; padding-bottom: 20px; border-radius: 8px;">
-                        <input multiple type="file"
-                               style="width: 100%;padding: 10px; background-color: #f2f7f8; border-radius: 8px"
-                               id="" accept="image/png, image/jpeg" name="images[]" >
-                    </div>
-                    <div style="width: 100%; ; padding-bottom: 20px; border-radius: 8px; ">
-                    <textarea style="width: 100%;padding: 10px; background-color: #f2f7f8; border-radius: 8px" name="text"
-                              id="" placeholder="Your text ..."></textarea>
-                    </div>
-                    <button class="reviews__btn" type="submit" style="display: inline-block">Submit</button>
-                </form>
-@endif
-@foreach($reviews as $review)
-                <div class="review">
-                    <div class="review__left">
-                        <h5 class="review__name">{{$review->user()->name}}</h5>
-                        <h6 class="review__date">{{$review->created_at}}</h6>
-                    </div>
-                    <div class="review__right">
-                        <p class="review__top">{{$review->text}}</p>
-                        <p class="review__bottom">
-                            @foreach($review->images() as $image)
-                            <img src="{{asset('storage/' . $image->patch)}}" alt="">
-                            @endforeach()
-                        </p>
-                    </div>
-                </div>
-@endforeach()
-                <button name='showmore' class="reviews__more">SHOW MORE</button>
+                        @csrf
+                        <input type="text" name="product_id" hidden value="{{$product->id}}">
+                        <div style="width: 100%; ; padding-bottom: 20px; border-radius: 8px;">
+                            <input multiple type="file"
+                                   style="width: 100%;padding: 10px; background-color: #f2f7f8; border-radius: 8px"
+                                   id="" accept="image/png, image/jpeg" name="images[]">
+                        </div>
+                        <div style="width: 100%; ; padding-bottom: 20px; border-radius: 8px; ">
+                    <textarea style="width: 100%;padding: 10px; background-color: #f2f7f8; border-radius: 8px"
+                              name="text"
+                              required id="" placeholder="Your text ..."></textarea>
+                        </div>
+                        <button class="reviews__btn" type="submit" style="display: inline-block">Submit</button>
+                    </form>
+                @endif
+                @foreach($reviews as $review)
+                    <form class="review" action="{{route('review.delete')}}" method="post">
+                        @csrf
+                        <div class="review__left">
+                            <h5 class="review__name">{{$review->user()->name}}</h5>
+                            <h6 class="review__date">{{$review->created_at}}</h6>
+                            <br>
+                            @if(auth()->check() and auth()->user()->id == $review->user()->id)
+                                <input type="text" hidden name="review_id" value="{{$review->id}}">
+                                <button type="submit" class="reviews__btn">Delete</button>
+                            @endif
+                        </div>
+                        <div class="review__right">
+                            <p class="review__top">{{$review->text}}</p>
+                            <p class="review__bottom">
+                                @foreach($review->images() as $image)
+                                    <img src="{{asset('storage/' . $image->patch)}}" alt="">
+                                @endforeach()
+                            </p>
+                        </div>
+                    </form>
+                @endforeach()
+{{--                <a name='showmore' class="reviews__more">SHOW MORE</a>--}}
             </div>
         </div>
     </section>

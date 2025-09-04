@@ -8,7 +8,7 @@
                 <p class="banner__descritpion">
                     Smart sepplements and tools to help you think <br> sharper, sleep better, and feel more alive.
                 </p>
-                <a class="banner__btn"><p>shop new</p></a>
+                <a href="#store" class="banner__btn"><p>shop new</p></a>
             </div>
         </div>
     </section>
@@ -62,11 +62,12 @@
                     <span>You get 5%</span> of every order made by your referral. <br>
                     They receive <span>5% off on all products.</span>
                 </p>
-                <a href="" class="referral__btn">SIGN IN TO GET YOUR LINK</a>
+                <a href="{{route('profile.referral')}}" class="referral__btn">SIGN IN TO GET YOUR LINK</a>
                 <p href="" class="referral__caption">Referral rewards are added after a completed purchase.
                     Discountsmapply automaticaly at checkout.</p>
             </div>
-            <img src="./img/dna1.png" alt="" style="position: absolute; z-index: -1 ;top: -240px; left: -450px; width: 500%; transform: rotate(355deg);">
+            <img src="./img/dna.png" alt="" style="position: absolute; z-index: -1; left: 15px; top: -200px">
+            <img src="./img/dna1.png" alt="" style="position: absolute; z-index: -1; right: 0; top: -350px">
         </div>
     </section>
     <section class="faq" id="faq">

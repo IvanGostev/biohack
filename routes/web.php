@@ -21,6 +21,7 @@ Route::get('/', [MainController::class, 'index'])->name('index');
 Route::get('/{product}/product', [MainController::class, 'product'])->name('product');
 Route::post('/{product}/product', [MainController::class, 'product'])->name('product');
 Route::middleware('auth')->post('/review', [MainController::class, 'review'])->name('review');
+Route::middleware('auth')->post('/review-delete', [MainController::class, 'review_delete'])->name('review.delete');
 
 
 

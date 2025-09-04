@@ -28,7 +28,7 @@
             </ul>
             <ul>
                 <li class="title">You Progress</li>
-                <li class="green">Done</li>
+                <li class="green" style="color: black">None</li>
                 <li class="bold">{{auth()->user()->countOrders()}} / 1</li>
                 <li class="bold">{{auth()->user()->countOrders()}} / 10</li>
                 <li class="bold">{{auth()->user()->countOrders()}} / 100</li>

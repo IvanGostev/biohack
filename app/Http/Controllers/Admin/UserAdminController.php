@@ -18,12 +18,24 @@ class UserAdminController extends Controller
     public function index(Request $request): View
     {
         $users = User::all();
-        return view('admin.user.index', compact('users'));
+        $ids = [];
+        foreach ($users as $user) {
+            $mes = Message::where('user_id', $user->id)->latest()->first();
+            if ($mes and $mes->status != 'read') {
+                $ids[] = $user->id;
+            };
+        }
+        $usersActive = User::findMany($ids);
+        $users = User::whereNotIn('id', $ids)->get();
+        return view('admin.user.index', compact('users', 'usersActive'));
     }
 
     public function chat(User $user, Request $request): View
     {
         $messages = Message::where('user_id', $user->id)->get();
+        foreach ($messages as &$message) {
+            $message->update(['status' => 'read']);
+        }
         return view('admin.user.chat', compact('user', 'messages'));
     }
 
@@ -32,7 +44,7 @@ class UserAdminController extends Controller
         $all = $request->all();
         Message::create([
             'text' => $all['text'],
-            'status' => 'new',
+            'status' => 'read',
             'whom' => 'user',
             'user_id' => $all['user_id']
         ]);

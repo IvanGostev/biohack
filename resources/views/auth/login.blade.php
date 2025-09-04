@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +22,11 @@
     @csrf
     <div class="container">
         <h1 class="form__logo">BIOHACKERS</h1>
-        <h2 class="form__title">Log In</h2>
+        <h2 class="form__title">Log In </h2>
+        @foreach($errors->all() as $error)
+            <p>{{$error}}</p>
+            @endforeach()
+
         <div class="input">
             <input type="text" name="name" placeholder="Username">
         </div>
