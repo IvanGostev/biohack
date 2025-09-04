@@ -14,7 +14,7 @@
 <header class="header" id="header">
     <nav class="nav container">
         <div class="nav__left">
-            <h6 class="nav__logo">BIOHACKERS</h6>
+            <a href="{{route('index')}}" style="cursor: pointer" class="nav__logo">BIOHACKERS</a>
         </div>
         <ul class="nav__center">
             <a class="nav__item" href="/#about">ABOUT US</a>
@@ -48,16 +48,20 @@
             </div>
             <div class="social__right">
                 <a class="social__item">
-                    Telegram
+                    <img src={{ asset('/img/tg.svg')}} alt="">
+                    <p>Telegram</p>
                 </a>
                 <a class="social__item">
-                    YouTube
+                    <img src={{ asset('/img/yt.svg')}} alt="">
+                    <p>YouTube</p>
                 </a>
                 <a class="social__item">
-                    Reddit
+                    <img src={{ asset('/img/reddit.svg')}} alt="">
+                    <p>Reddit</p>
                 </a>
                 <a class="social__item">
-                    X (Twitter)
+                    <img src={{ asset('/img/x.svg')}} alt="">
+                    <p>X (Twitter)</p>
                 </a>
             </div>
         </div>
@@ -83,7 +87,9 @@
 
 
         </div>
-        <a href="#header" class="footer__btn"></a>
+        <a href="#header" class="footer__btn">
+            <img src="{{ asset('./img/arrow-up.svg')}}" alt="" style="display:block; margin: 0 auto; padding-top: 14px;">
+        </a>
     </div>
     <div class="footer__bottom">
         <div class="container">

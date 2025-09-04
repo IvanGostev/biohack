@@ -53,6 +53,8 @@
         <div class="input">
             <input required type="text" name="text" placeholder="Exact replenishment time or account number">
         </div>
-        <button class="btn"  type="submit"></button>
+        <button class="btn" type="submit">
+            <img src="{{asset('/img/send.svg')}}" alt="" style="transform: rotate(345deg)">
+        </button>
     </form>
 @endsection

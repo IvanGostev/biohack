@@ -87,7 +87,7 @@
         <!--begin::Sidebar Brand-->
         <div class="sidebar-brand">
             <!--begin::Brand Link-->
-            <a href="/admin/text" class="brand-link">
+            <a href="/admin/products" class="brand-link">
 
                 <span class="brand-text fw-light">ADMIN PANEL</span>
 

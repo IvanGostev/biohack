@@ -8,6 +8,8 @@ use App\Models\Product;
 use App\Models\ProductCountry;
 use App\Models\ProductDelivery;
 use App\Models\ProductImage;
+use App\Models\ProductReview;
+use App\Models\ProductReviewImage;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -21,6 +23,7 @@ class MainController extends Controller
 
     public function product(Product $product, Request $request)
     {
+        $reviews = ProductReview::where('product_id', $product->id)->get();
         $activeImage = $request->imageId ? ProductImage::where('product_id', $product->id)->where('id', $request->imageId)->first() : ProductImage::where('product_id', $product->id)->first();
         if ($request->action) {
             if ($request->action == 'left') {
@@ -70,7 +73,16 @@ class MainController extends Controller
             $countActive = 1;
         }
 
+        if ($request->writeReview and $request->writeReview == 'display') {
+            $writeReview = 'display';
+        } else {
+            $writeReview = 'none';
+        }
+
         if ($request->cart) {
+            if (!auth()->check()) {
+                return redirect()->route('login');
+            }
             if (Cart::where('user_id', auth()->user()->id)->count() > 0) {
                 $cart = Cart::where('user_id', auth()->user()->id)->first();
             } else {
@@ -90,6 +102,29 @@ class MainController extends Controller
             return redirect()->route('profile.cart');
         }
 
-        return view('product', compact('product', 'activeImage', 'toIdActive', 'deliveryIdActive', 'fromIdActive', 'countActive'));
+        return view('product', compact('product', 'activeImage', 'toIdActive', 'deliveryIdActive', 'fromIdActive', 'countActive', 'writeReview', 'reviews'));
+    }
+
+    public function review(Request $request)
+    {
+
+        $all = $request->all();
+        $pr = ProductReview::create([
+            'product_id' => $all['product_id'],
+            'text' => $all['text'],
+            'user_id' => auth()->user()->id,
+
+        ]);
+
+        $files = $all['images'];
+        foreach ($files as $file) {
+            $patch = $file->store('reviews', 'public');
+            ProductReviewImage::create([
+                'patch' => $patch,
+                'product_review_id' => $pr->id,
+            ]);
+        }
+
+        return redirect()->route('product', $all['product_id']);
     }
 }

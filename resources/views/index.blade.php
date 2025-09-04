@@ -44,15 +44,17 @@
                         <a href="{{route('product', $product->id)}}" class="product__title">{{$product->title}}</a>
                         <a href="{{route('product', $product->id)}}" class="product__weight">{{$product->weight}}g</a>
                         <a href="{{route('product', $product->id)}}" class="product__price">${{$product->price}}</a>
-                        <a href="{{route('product', $product->id)}}" class="product__reviews">{{$product->countReviews()}} Reviews</a>
-                        <a style="cursor: pointer" href="{{route('product', $product->id)}}" class="product__btn">ADD TO CART</a>
+                        <a href="{{route('product', $product->id)}}"
+                           class="product__reviews">{{$product->countReviews()}} Reviews</a>
+                        <a style="cursor: pointer" href="{{route('product', $product->id)}}" class="product__btn">ADD TO
+                            CART</a>
                     </form>
                 @endforeach
             </div>
         </div>
     </section>
-    <section class="referral" id="referral">
-        <div class="container">
+    <section class="referral" id="referral" style="position: relative">
+        <div class="container" >
             <div class="referral__main">
                 <h3 class="referral__title">Referral Program</h3>
                 <p class="referral__descritpion">Invite & Earn Rewards
@@ -64,7 +66,7 @@
                 <p href="" class="referral__caption">Referral rewards are added after a completed purchase.
                     Discountsmapply automaticaly at checkout.</p>
             </div>
-            <img src="./img/" alt="">
+            <img src="./img/dna1.png" alt="" style="position: absolute; z-index: -1 ;top: -240px; left: -450px; width: 500%; transform: rotate(355deg);">
         </div>
     </section>
     <section class="faq" id="faq">

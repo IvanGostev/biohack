@@ -14,7 +14,7 @@
 <header class="header" id="header">
     <nav class="nav container">
         <div class="nav__left">
-            <h6 class="nav__logo">BIOHACKERS</h6>
+            <a  href="{{route('index')}}" style="cursor: pointer" class="nav__logo">BIOHACKERS</a>
         </div>
         <ul class="nav__center">
             <a class="nav__item" href="/#about">ABOUT US</a>

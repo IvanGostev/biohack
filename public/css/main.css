@@ -603,9 +603,9 @@ summary:focus {
     justify-content: center;
 }
 .review {
+    width: 100%;
     margin-bottom: 70px;
     display: flex;
-    justify-content: space-between;
     gap: 50px;
 }
 .review__left {
@@ -627,7 +627,10 @@ summary:focus {
 .review__top {
 }
 .review__bottom {
+    width: 100%;
     display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
     gap: 24px;
 }
 .review__bottom img {
@@ -1158,4 +1161,8 @@ summary:focus {
     color: white;
     background-color: #009d9a;
     border-radius: 100px;
+}
+.social__item {
+    display: flex;
+    gap: 8px;
 }
