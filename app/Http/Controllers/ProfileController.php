@@ -103,18 +103,19 @@ class ProfileController extends Controller
                 ]);
                 Message::create([
                     'text' => 'A new order has been created #' . (string)$order->id,
-                    'status' => 'read',
+                    'status' => 'new',
                     'whom' => 'user',
                     'user_id' => $user->id
                 ]);
-                if (auth()->user()->ref) {
+                if (auth()->user()->ref and auth()->user()->ref != auth()->user()->id) {
                     $ref = User::where('id', auth()->user()->ref)->first();
-                    $ref->update(['balance' => $ref->balance + ($item->product()->price * $item->count ** 0.5)]);
+                    $ref->update(['balance' => $ref->balance + (($item->product()->price * $item->count) * 0.05)]);
                     BalanceMessage::create([
                         'text' => 'system',
-                        'sum' => ($item->product()->price * $item->count ** 0.5),
+                        'sum' => (($item->product()->price * $item->count) * 0.05),
                         'type' => 'ref',
-                        'user_id' => $ref->id
+                        'status' => 'approved',
+                        'user_id' => $ref->id,
                     ]);
                 }
                 $item->delete();

@@ -118,7 +118,8 @@
                     " enctype='multipart/form-data' action="{{route('review')}}">
                         @csrf
                         <input type="text" name="product_id" hidden value="{{$product->id}}">
-                        <div style="width: 100%; background-color: #f2f7f8; margin-bottom: 20px; border-radius: 8px; display: flex">
+                        <div
+                            style="width: 100%; background-color: #f2f7f8; margin-bottom: 20px; border-radius: 8px; display: flex">
                             <input multiple type="file"
                                    style="width: 100%;padding: 10px; ; border-radius: 8px"
                                    id="" accept="image/png, image/jpeg" name="images[]">
@@ -155,8 +156,10 @@
                             <p class="review__top">{{$review->text}}</p>
                             <p class="review__bottom">
                                 @foreach($review->images() as $image)
-                                    <img style="width: 109px; height: 133px" src="{{asset('storage/' . $image->patch)}}"
-                                         alt="">
+                                    <a href="?imageFileActive={{$image->id}}">
+                                        <img style="width: 109px; height: 133px"
+                                             src="{{asset('storage/' . $image->patch)}}" alt="">
+                                    </a>
                                 @endforeach()
                             </p>
                         </div>
@@ -166,9 +169,89 @@
             </div>
         </div>
     </section>
-    <div id="img-viewer">
-        <a class="close" href="{{route('product', $product->id)}}">&times;</a>
-        <img class="modal-content" id="full-image" >
-    </div>
 
+    @if($imageFileActive)
+        <div id="img-viewer" style="display: block">
+            <a class="close" href="{{route('product', $product->id) . '#reviews'}}">&times;</a>
+            <img class="modal-content" id="full-image" src="{{asset('storage/' . $imageFileActive->patch)}}">
+        </div>
+        <style>
+            /*body {*/
+            /*    scroll: hidden;*/
+            /*}*/
+
+            .modal-content {
+                margin: auto;
+                display: block;
+                width: 80%;
+                max-width: 700px;
+            }
+
+            .modal-content {
+                animation-name: zoom;
+                animation-duration: 0.6s;
+            }
+
+            @keyframes zoom {
+                from {
+                    transform: scale(0)
+                }
+                to {
+                    transform: scale(1)
+                }
+            }
+
+            #img-viewer {
+                display: none;
+                position: fixed;
+                z-index: 1000;
+                padding-top: 100px;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgb(0, 0, 0);
+            }
+
+            #img-viewer .close {
+                position: absolute;
+                top: 15px;
+                right: 35px;
+                color: #f1f1f1;
+                font-size: 40px;
+                font-weight: bold;
+                transition: 0.3s;
+            }
+
+            #img-viewer .close:hover {
+                cursor: pointer;
+            }
+
+            @media only screen and (max-width: 700px) {
+                .modal-content {
+                    width: 100%;
+                }
+            }
+
+            .img-container {
+                position: relative;
+                width: 300px;
+            }
+
+            .img-source {
+                border: 5px solid #ccc;
+                border-radius: 5px;
+                width: 100%;
+            }
+
+            .expand-icon {
+                position: absolute;
+                right: 10px;
+                top: 15px;
+                cursor: pointer;
+            }
+
+        </style>
+    @endif
 @endsection

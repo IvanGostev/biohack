@@ -53,7 +53,7 @@ class User extends Authenticatable
 
     public function refIncome() {
         $sum = 0;
-        $items = BalanceMessage::where('type', 'ref')->get();
+        $items = BalanceMessage::where('user_id', $this->id)->where('type', 'ref')->get();
         foreach ($items as $item) {
             $sum += $item->sum;
         }
@@ -67,7 +67,7 @@ class User extends Authenticatable
 
     public function newMessageCheck() {
         $m = Message::where('user_id', $this->id)->where('whom', 'user')->latest()->first();
-        if ($m->status != 'read') {
+        if ($m and $m->status != 'read') {
             return true;
         }
         return false;

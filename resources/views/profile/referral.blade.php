@@ -35,7 +35,7 @@
                 </div>
                 <div class="caption">
                     <p>This Month: <span>{{auth()->user()->refCount()}}</span></p>
-                    <p>Total Referrals Month: <span>{{auth()->user()->refCount()}}</span></p>
+                    <p>Total Referrals: <span>{{auth()->user()->refCount()}}</span></p>
                 </div>
             </div>
         </div>

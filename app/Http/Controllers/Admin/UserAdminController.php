@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\Country;
 use App\Models\Message;
+use App\Models\Social;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -51,5 +52,11 @@ class UserAdminController extends Controller
             'user_id' => $all['user_id']
         ]);
         return redirect()->route('admin.user.chat', $all['user_id']);
+    }
+
+    public function delete(User $user): RedirectResponse
+    {
+        $user->delete();
+        return redirect()->route('admin.user.index');
     }
 }

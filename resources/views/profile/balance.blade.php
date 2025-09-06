@@ -13,7 +13,7 @@
                 <th scope="col">Type</th>
                 <th scope="col">Sum</th>
                 <th scope="col">Status</th>
-                <th scope="col">Exact replenishment time or account number</th>
+                <th scope="col">Exact replenishment time or account address</th>
                 <th scope="col">Date</th>
             </tr>
             </thead>

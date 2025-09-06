@@ -14,7 +14,7 @@
     </section>
     @foreach($infos as $info)
         <section class="about" id="about">
-            <div class="container" style="justify-content: space-between">
+            <div class="container" style="justify-content: space-between; ">
                 <div class="about__left">
                     <h3 class="about__title">{{$info->title}}</h3>
                     <p class="about__description">
@@ -22,7 +22,7 @@
                     </p>
                 </div>
                 <div class="about__right">
-                    <div class="about__img" style="background-image: url('{{asset('storage/' . $info->img)}}');">
+                    <div class="about__img" style="background-image: url('{{asset('storage/' . $info->img)}}');     width: 400px!important;">
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                             <img src="{{asset('storage/' . $product->image()->patch)}}" alt="">
                         </a>
                         <a href="{{route('product', $product->id)}}" class="product__title">{{$product->title}}</a>
-                        <a href="{{route('product', $product->id)}}" class="product__weight">{{$product->weight}}g</a>
+                        <a href="{{route('product', $product->id)}}" class="product__weight">{{$product->weight}}</a>
                         <a href="{{route('product', $product->id)}}" class="product__price">${{$product->price}}</a>
                         <a href="{{route('product', $product->id)}}"
                            class="product__reviews">{{$product->countReviews()}} Reviews</a>

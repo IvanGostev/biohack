@@ -100,6 +100,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/{user}/chat', 'chat')->name('chat');
         Route::post('/message', 'message')->name('message');
+        Route::delete('{user}/delete', 'delete')->name('delete');
     });
     Route::prefix('faq')->name('faq.')->controller(FaqAdminController::class)->group(function () {
         Route::get('/', 'index')->name('index');

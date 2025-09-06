@@ -14,6 +14,7 @@
                             <th style="width: 10px" scope="col">#</th>
                             <th scope="col">Name</th>
                             <th scope="col" style="width: 20px">Chat</th>
+                            <th scope="col" style="width: 20px">Delete</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -43,6 +44,13 @@
                                     <a href="{{route('admin.user.chat', $user->id)}}" type="submit"
                                        class="btn btn-dark">Chat</a>
 
+                                </td>
+                                <td>
+                                    <form action="{{route('admin.user.delete', $user->id)}}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-dark">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

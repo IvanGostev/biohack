@@ -43,7 +43,11 @@ class MainController extends Controller
                 }
             }
         }
-
+        if ($request->imageFileActive) {
+            $imageFileActive = ProductReviewImage::where('id', $request->imageFileActive)->first();
+        } else {
+            $imageFileActive = 0;
+        }
         if ($request->toIdActive) {
             $toIdActive = $request->toIdActive;
         } else {
@@ -105,7 +109,7 @@ class MainController extends Controller
             return redirect()->route('profile.cart');
         }
 
-        return view('product', compact('product', 'activeImage', 'toIdActive', 'deliveryIdActive', 'fromIdActive', 'countActive', 'writeReview', 'reviews'));
+        return view('product', compact('product', 'activeImage', 'toIdActive', 'deliveryIdActive', 'fromIdActive', 'countActive', 'writeReview', 'reviews', 'imageFileActive'));
     }
 
     public function review(Request $request)

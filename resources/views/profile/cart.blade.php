@@ -19,7 +19,7 @@
                 <div class="module"><img src="{{asset('storage/' . $item->image()->patch)}}" alt="">
                     <div class="text">
                         <h5>{{$item->title}}</h5>
-                        <h6><span>Package quantity:</span> {{$item->weight}}g </h6>
+                        <h6><span>Package quantity:</span> {{$item->weight}}</h6>
                     </div>
                 </div>
 
