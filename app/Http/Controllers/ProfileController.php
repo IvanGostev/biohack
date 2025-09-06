@@ -21,6 +21,15 @@ class ProfileController extends Controller
     public function support(Request $request): View
     {
         $messages = Message::where('user_id', auth()->user()->id)->get();
+        foreach ($messages as &$message) {
+            if ($message->whom != 'support') {
+                $message->update(['status' => 'read']);
+            }
+        }
+
+//        $messages = Message::where('user_id', auth()->user()->id)->get();
+
+
         return view('profile.support', compact('messages'));
     }
 
@@ -79,11 +88,11 @@ class ProfileController extends Controller
             $items = CartProduct::where('cart_id', Cart::where('user_id', auth()->user()->id)->first()->id)->get();
             foreach ($items as &$item) {
                 if (auth()->user()->ref) {
-                    $price = $item->product()->price * $item->count - (int)($item->product()->price * $item->count ** 0.5);
+                    $price = $item->product()->price * $item->count - ($item->product()->price * $item->count ** 0.5);
                 } else {
-                    $item->product()->price * $item->count;
+                    $price = $item->product()->price * $item->count;
                 }
-                Order::firstOrCreate([
+               $order = Order::create([
                     'price' => $price,
                     'product_id' => $item->product_id,
                     'count' => $item->count,
@@ -92,18 +101,22 @@ class ProfileController extends Controller
                     'from' => $item->from,
                     'user_id' => $user->id
                 ]);
+                Message::create([
+                    'text' => 'A new order has been created #' . (string)$order->id,
+                    'status' => 'read',
+                    'whom' => 'user',
+                    'user_id' => $user->id
+                ]);
                 if (auth()->user()->ref) {
                     $ref = User::where('id', auth()->user()->ref)->first();
-                    $ref->update(['balance' => $ref + (int)($item->product()->price * $item->count ** 0.5)]);
+                    $ref->update(['balance' => $ref->balance + ($item->product()->price * $item->count ** 0.5)]);
                     BalanceMessage::create([
                         'text' => 'system',
-                        'sum' => (int)($item->product()->price * $item->count ** 0.5),
+                        'sum' => ($item->product()->price * $item->count ** 0.5),
                         'type' => 'ref',
                         'user_id' => $ref->id
                     ]);
                 }
-
-
                 $item->delete();
             }
             $user->update(['balance' => $user->balance - $sum]);

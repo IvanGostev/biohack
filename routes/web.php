@@ -2,10 +2,13 @@
 
 use App\Http\Controllers\Admin\CountryAdminController;
 use App\Http\Controllers\Admin\DeliveryAdminController;
+use App\Http\Controllers\Admin\FaqAdminController;
+use App\Http\Controllers\Admin\InfoAdminController;
 use App\Http\Controllers\Admin\OrderAdminController;
 use App\Http\Controllers\Admin\ProductAdminController;
 use App\Http\Controllers\Admin\QuestionAdminController;
 use App\Http\Controllers\Admin\ReviewAdminController;
+use App\Http\Controllers\Admin\SocialAdminController;
 use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\Admin\BalanceAdminController;
 use App\Http\Controllers\MainController;
@@ -67,11 +70,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::delete('{question}/delete', 'delete')->name('delete');
     });
     Route::prefix('reviews')->name('review.')->controller(ReviewAdminController::class)->group(function () {
-        Route::get('/{product}', 'index')->name('index');
-//        Route::get('/{product}/create', 'create')->name('create');
-//        Route::post('/{product}/store', 'store')->name('store');
-//        Route::get('/{question}/edit', 'edit')->name('edit');
-//        Route::patch('/{question}/update', 'update')->name('update');
+        Route::get('/{product}/product', 'index')->name('index');
+        Route::get('/moderation', 'moderation')->name('moderation');
+        Route::post('/{status}/moderation', 'status')->name('status');
         Route::delete('{review}/delete', 'delete')->name('delete');
     });
     Route::prefix('country')->name('country.')->controller(CountryAdminController::class)->group(function () {
@@ -99,6 +100,30 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/{user}/chat', 'chat')->name('chat');
         Route::post('/message', 'message')->name('message');
+    });
+    Route::prefix('faq')->name('faq.')->controller(FaqAdminController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/{faq}/edit', 'edit')->name('edit');
+        Route::patch('/{faq}/update', 'update')->name('update');
+        Route::delete('{faq}/delete', 'delete')->name('delete');
+    });
+    Route::prefix('social')->name('social.')->controller(SocialAdminController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/{social}/edit', 'edit')->name('edit');
+        Route::patch('/{social}/update', 'update')->name('update');
+        Route::delete('{social}/delete', 'delete')->name('delete');
+    });
+    Route::prefix('info')->name('info.')->controller(InfoAdminController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/{info}/edit', 'edit')->name('edit');
+        Route::patch('/{info}/update', 'update')->name('update');
+        Route::delete('{info}/delete', 'delete')->name('delete');
     });
 });
 require __DIR__.'/auth.php';

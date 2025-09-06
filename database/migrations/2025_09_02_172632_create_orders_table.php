@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreignIdFor(Delivery::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Product::class)->constrained()->cascadeOnDelete();
             $table->bigInteger('count');
-            $table->bigInteger('price');
+            $table->double('price');
             $table->unsignedBigInteger('to')->index();
             $table->unsignedBigInteger('from')->index();
             $table->foreign('to')->references('id')->on('countries')->onDelete('cascade');

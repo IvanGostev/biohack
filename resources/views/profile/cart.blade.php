@@ -26,16 +26,22 @@
                 <form method="post" action="{{route('profile.cart')}}" class="count module" >
                     @csrf
                     <input type="text" hidden name="id" value="{{$item->id}}">
-                    <button name="action" value="minus" type='submit' class="account__minus"></button>
+                    <button name="action" value="minus" type='submit' class="account__minus">
+                        <img style="height: auto" src="{{asset('./img/minus.svg')}}" alt="">
+                    </button>
                     <div class="account__number">{{$item->count}}</div>
-                    <button name="action" value="plus" type='submit' class="account__plus"></button>
+                    <button name="action" value="plus" type='submit' class="account__plus">
+                        <img style="height: auto" src="{{asset('./img/add.svg')}}" alt="">
+                    </button>
                 </form>
 
                 <form method="post" action="{{route('profile.cart')}}" class="module" >
                     @csrf
                     <input type="text" hidden name="id" value="{{$item->id}}">
                     <p class="price">${{$item->product()->price * $item->count}}</p>
-                    <button name="action" value="delete" type='submit' class="cross"></button>
+                    <button name="action" value="delete" type='submit' class="cross">
+                        <img style="height: auto" src="{{asset('./img/cross.svg')}}" alt="">
+                    </button>
                 </form>
 
             </div>
@@ -44,11 +50,12 @@
             <div class="account__subtotal">
                 <form class="text" action="{{route('profile.order')}}" method="post">
                     @csrf
-                    <h6>Subtotal:</h6>
-                    <button class="btn" type="submit">CHECKOUT</button>
+                    <h6>Subtotal {{auth()->user()->ref ? '- 5% from your referral' : '' }}:</h6>
+                    <button
+                        class="btn" type="submit">CHECKOUT</button>
                 </form>
                 <div>
-                    <p>${{$sum}}</p>
+                    <p>${{auth()->user()->ref ? (int)($sum- $sum * 0.05) : $sum }}</p>
                 </div>
             </div>
         </div>

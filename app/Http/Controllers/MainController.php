@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\CartProduct;
+use App\Models\Faq;
+use App\Models\Info;
 use App\Models\Product;
 use App\Models\ProductCountry;
 use App\Models\ProductDelivery;
@@ -16,9 +18,10 @@ class MainController extends Controller
 {
     public function index(Request $request)
     {
-
         $products = Product::all();
-        return view('index', compact('products'));
+        $faqs = Faq::all();
+        $infos = Info::all();
+        return view('index', compact('products', 'faqs', 'infos'));
     }
 
     public function product(Product $product, Request $request)
@@ -107,8 +110,10 @@ class MainController extends Controller
 
     public function review(Request $request)
     {
-
         $all = $request->all();
+        if (isset($all['images']) and count($all['images']) > 5) {
+            return redirect()->route('product', $all['product_id']);
+        }
         $pr = ProductReview::create([
             'product_id' => $all['product_id'],
             'text' => $all['text'],

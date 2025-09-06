@@ -45,11 +45,11 @@
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Weight</label>
-                            <input type="number" required name="weight" value="{{$product->weight}}" class="form-control">
+                            <input type="text" required name="weight" value="{{$product->weight}}" class="form-control">
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Price</label>
-                            <input type="number" required name="price" value="{{$product->price}}" class="form-control">
+                            <input type="number" step="0.1" required name="price" value="{{$product->price}}" class="form-control">
                         </div>
 
                         <div class="mb-3">

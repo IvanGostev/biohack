@@ -47,22 +47,12 @@
                 <h6>Follow us on our social networks</h6>
             </div>
             <div class="social__right">
-                <a class="social__item">
-                    <img src={{ asset('/img/tg.svg')}} alt="">
-                    <p>Telegram</p>
-                </a>
-                <a class="social__item">
-                    <img src={{ asset('/img/yt.svg')}} alt="">
-                    <p>YouTube</p>
-                </a>
-                <a class="social__item">
-                    <img src={{ asset('/img/reddit.svg')}} alt="">
-                    <p>Reddit</p>
-                </a>
-                <a class="social__item">
-                    <img src={{ asset('/img/x.svg')}} alt="">
-                    <p>X (Twitter)</p>
-                </a>
+                @foreach(getSocials() as $social)
+                    <a class="social__item" href="{{$social->link}}">
+                        <img style="width: 26px; height: 26px" src="{{ asset('storage/' . $social->img )}}" alt="">
+                        <p>{{$social->title}}</p>
+                    </a>
+                @endforeach()
             </div>
         </div>
     </div>
@@ -88,7 +78,8 @@
 
         </div>
         <a href="#header" class="footer__btn">
-            <img src="{{ asset('./img/arrow-up.svg')}}" alt="" style="display:block; margin: 0 auto; padding-top: 14px;">
+            <img src="{{ asset('./img/arrow-up.svg')}}" alt=""
+                 style="display:block; margin: 0 auto; padding-top: 14px;">
         </a>
     </div>
     <div class="footer__bottom">

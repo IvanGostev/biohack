@@ -4,7 +4,10 @@
         <div class="col-md-12">
             <div class="card mb-4">
 
-                <div class="card-header"><h3 class="card-title">Messages</h3></div>
+                <div class="card-header"><h3 class="card-title">      <a href="{{route('admin.user.index')}}" style="color: black; text-decoration: none; padding-right: 10px;" >
+                            <img src="{{asset('img/arrow-left-2.svg')}}" alt="">
+                            BACK</a>
+                        Messages</h3></div>
                 <!-- /.card-header -->
                 <div class="card-body">
 

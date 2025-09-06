@@ -69,9 +69,9 @@
                 <a href="{{route('profile.status')}}" class="account__item {{request()->is('profile/status') ? 'active' : ''}}">
                     <img style="width: 16px; margin-top: 3px; margin-right: 5px" src="{{ asset('./img/star.svg')}}" alt="">
                     Account Status</a>
-                <a href="{{route('profile.support')}}" class="account__item {{request()->is('profile/support') ? 'active' : ''}}">
+                <a style="display: flex; gap: 10px" href="{{route('profile.support')}}" class="account__item {{request()->is('profile/support') ? 'active' : ''}}">
                     <img style="width: 16px; margin-top: 3px; margin-right: 5px" src="{{ asset('./img/message.svg')}}" alt="">
-                    Support</a>
+                    Support @if(auth()->user()->newMessageCheck())<span style="display:block; width: 18px; height: 18px; background-color: #009d9a; border-radius: 100px "> </span>  @endif</a>
                 <a href="{{route('profile.balance')}}" class="account__item {{request()->is('profile/balance') ? 'active' : ''}}">
                     <img style="width: 16px; margin-top: 3px; margin-right: 5px" src="{{ asset('./img/message.svg')}}" alt="">
                     Balance</a>
@@ -100,22 +100,12 @@
                 <h6>Follow us on our social networks</h6>
             </div>
             <div class="social__right">
-                <a class="social__item">
-                    <img src={{ asset('/img/tg.svg')}} alt="">
-                    <p>Telegram</p>
-                </a>
-                <a class="social__item">
-                    <img src={{ asset('/img/yt.svg')}} alt="">
-                    <p>YouTube</p>
-                </a>
-                <a class="social__item">
-                    <img src={{ asset('/img/reddit.svg')}} alt="">
-                    <p>Reddit</p>
-                </a>
-                <a class="social__item">
-                    <img src={{ asset('/img/x.svg')}} alt="">
-                    <p>X (Twitter)</p>
-                </a>
+                @foreach(getSocials() as $social)
+                    <a class="social__item" href="{{$social->link}}">
+                        <img style="width: 26px; height: 26px" src="{{ asset('storage/' . $social->img )}}" alt="">
+                        <p>{{$social->title}}</p>
+                    </a>
+                @endforeach()
             </div>
         </div>
     </div>

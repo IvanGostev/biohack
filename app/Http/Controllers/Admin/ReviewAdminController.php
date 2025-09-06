@@ -26,41 +26,18 @@ class ReviewAdminController extends Controller
         $reviews = ProductReview::where('product_id', $product->id)->get();
         return view('admin.review.index', compact('reviews', 'product'));
     }
-
-    public function create(Product $product, Request $request): View
+    public function moderation(Product $product, Request $request): View
     {
-        return view('admin.question.create', compact('product'));
+        $reviews = ProductReview::where('status', 'new')->get();
+        return view('admin.review.moderation', compact('reviews', 'product'));
     }
 
-
-    public function store(Product $product, Request $request): RedirectResponse
+    public function status (ProductReview $review, $status, Request $request): RedirectResponse
     {
-        $all = $request->all();
-
-        ProductQuestion::create([
-            'product_id' => $product->id,
-            'title' => $all['title'],
-            'answer' => $all['answer'],
+        $review->update([
+            'status' => $status,
         ]);
-
-        return redirect()->route('admin.question.index', $product->id);
-    }
-
-    public function edit(ProductQuestion $question, Request $request): View
-    {
-        return view('admin.question.edit', compact('question'));
-    }
-
-    public function update (ProductQuestion $question, Request $request): RedirectResponse
-    {
-        $all = $request->all();
-
-        $question->update([
-            'title' => $all['title'],
-            'answer' => $all['answer'],
-        ]);
-
-        return redirect()->route('admin.question.index', $question->product_id);
+        return back();
     }
 
     public function delete(ProductReview $review): RedirectResponse

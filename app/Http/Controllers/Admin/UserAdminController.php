@@ -20,7 +20,7 @@ class UserAdminController extends Controller
         $users = User::all();
         $ids = [];
         foreach ($users as $user) {
-            $mes = Message::where('user_id', $user->id)->latest()->first();
+            $mes = Message::where('user_id', $user->id)->where('whom', 'support')->latest()->first();
             if ($mes and $mes->status != 'read') {
                 $ids[] = $user->id;
             };
@@ -34,7 +34,9 @@ class UserAdminController extends Controller
     {
         $messages = Message::where('user_id', $user->id)->get();
         foreach ($messages as &$message) {
-            $message->update(['status' => 'read']);
+            if ($message->whom != 'user') {
+                $message->update(['status' => 'read']);
+            }
         }
         return view('admin.user.chat', compact('user', 'messages'));
     }
@@ -44,7 +46,7 @@ class UserAdminController extends Controller
         $all = $request->all();
         Message::create([
             'text' => $all['text'],
-            'status' => 'read',
+            'status' => 'new',
             'whom' => 'user',
             'user_id' => $all['user_id']
         ]);

@@ -12,26 +12,23 @@
             </div>
         </div>
     </section>
-    <section class="about" id="about">
-        <div class="container">
-            <div class="about__left">
-                <h3 class="about__title">About us</h3>
-                <p class="about__description">
-                    Biohackers is more than a brand - it's a mindset. We believe that with the right tools, anyone can
-                    upgrade their body and mind. <br><br>
-                    Our mission is to make cutting-edge wellness accessible. Every product we offer is carefully
-                    selected to support energy, focus, recovery, and long-term health. <br><br>
-                    Whether you're an entrepreneur, athlete, student, or just curious - you're already on your path.
-                    We're here to help you go further.
-                </p>
-            </div>
-            <div class="about__right">
-                <div class="about__img">
-                    <img src="" alt="">
+    @foreach($infos as $info)
+        <section class="about" id="about">
+            <div class="container" style="justify-content: space-between">
+                <div class="about__left">
+                    <h3 class="about__title">{{$info->title}}</h3>
+                    <p class="about__description">
+                        {{$info->text}}
+                    </p>
+                </div>
+                <div class="about__right">
+                    <div class="about__img" style="background-image: url('{{asset('storage/' . $info->img)}}');">
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endforeach
+
     <section class="store" id="store">
         <div class="container">
             <h4 class="store__title">Products</h4>
@@ -53,9 +50,9 @@
             </div>
         </div>
     </section>
-    <section class="referral" id="referral" style="position: relative">
-        <div class="container" >
-            <div class="referral__main">
+    <section class="referral" id="referral">
+        <div class="container">
+            <div class="referral__main" style="position: relative">
                 <h3 class="referral__title">Referral Program</h3>
                 <p class="referral__descritpion">Invite & Earn Rewards
                     <br>
@@ -65,42 +62,31 @@
                 <a href="{{route('profile.referral')}}" class="referral__btn">SIGN IN TO GET YOUR LINK</a>
                 <p href="" class="referral__caption">Referral rewards are added after a completed purchase.
                     Discountsmapply automaticaly at checkout.</p>
+                <img src="{{asset('./img/dna.png')}}" alt="" style="    position: absolute;
+    z-index: -1;
+    left: -430px;
+    width: 2000px;
+    height: 900px;
+    top: -300px;
+    transform: rotate(345deg);">
+                <img src="{{asset('./img/dna2.png')}}" alt="" style="    position: absolute;
+    z-index: -1;
+    right: -410px;
+    height: 450px;
+    top: -320px;">
             </div>
-            <img src="./img/dna.png" alt="" style="position: absolute; z-index: -1; left: 15px; top: -200px">
-            <img src="./img/dna1.png" alt="" style="position: absolute; z-index: -1; right: 0; top: -350px">
+
         </div>
     </section>
     <section class="faq" id="faq">
         <div class="container">
             <h3 class="faq__title">FAQ</h3>
-            <details>
-                <summary>Are you products safe?</summary>
-                <p>Скандинавская мифология — мифология древних скандинавов Скандинавская мифология — мифология древних
-                    скандинавов Скандинавская мифология — мифология древних скандинавов </p>
-            </details>
-            <details>
-                <summary>Are you products safe?</summary>
-                <p>Скандинавская мифология — мифология древних скандинавов Скандинавская мифология — мифология древних
-                    скандинавов Скандинавская мифология — мифология древних скандинавов </p>
-            </details>
-            <details>
-                <summary>Are you products safe?</summary>
-                <p>Скандинавская мифология — мифология древних скандинавов Скандинавская мифология — мифология древних
-                    скандинавов Скандинавская мифология — мифология древних скандинавов </p>
-            </details>
-            <details>
-                <summary>Are you products safe?</summary>
-                <p>Скандинавская мифология — мифология древних скандинавов Скандинавская мифология — мифология древних
-                    скандинавов Скандинавская мифология — мифология древних скандинавов </p>
-            </details>
-            <details>
-                <summary>Покажи-скрой меня</summary>
-                <p>Скандинавская мифология — мифология древних скандинавов</p>
-            </details>
-            <details>
-                <summary>Покажи-скрой меня</summary>
-                <p>Скандинавская мифология — мифология древних скандинавов</p>
-            </details>
+            @foreach($faqs as $faq)
+                <details>
+                    <summary>{{$faq->title}}</summary>
+                    <p>{{$faq->answer}} </p>
+                </details>
+            @endforeach
         </div>
     </section>
 

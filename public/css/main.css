@@ -2,6 +2,7 @@ body {
     font-family: "DM Sans", sans-serif;
     font-optical-sizing: auto;
     color: #222222;
+    overflow-x: hidden;
 }
 a {
     color: #222222;
@@ -46,6 +47,10 @@ section {
     max-width: 1224px;
     padding: 0 12px;
     background-color: #009d9a;
+    background-image: url('../img/back1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     height: 397px;
     border-radius: 16px;
     color: white;
@@ -97,7 +102,9 @@ section {
 .about__right {
 }
 .about__img {
-    background-color: #7fdbda;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
     width: 600px;
     height: 330px;
     border-radius: 16px;
@@ -932,7 +939,6 @@ summary:focus {
     padding-right: 60px;
 }
 .account__product .cross {
-    background-color: darkolivegreen;
     width: 24px;
     height: 24px;
 }
@@ -963,6 +969,7 @@ summary:focus {
     font-size: 14px;
     background-color: #009d9a;
     border-radius: 100px;
+    border: 1px solid #009d9a;
 }
 .account__subtotal .text .btn:hover {
     color: #009d9a;

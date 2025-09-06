@@ -63,8 +63,8 @@
                         <i class="bi bi-list"></i>
                     </a>
                 </li>
-{{--                <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Home</a></li>--}}
-{{--                <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Contact</a></li>--}}
+                {{--                <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Home</a></li>--}}
+                {{--                <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Contact</a></li>--}}
             </ul>
             <!--end::Start Navbar Links-->
             <!--begin::End Navbar Links-->
@@ -230,6 +230,98 @@
                                 <a href="{{route('admin.balance.index')}}" class="nav-link">
                                     <i class="nav-icon bi bi-circle"></i>
                                     <p>List</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon bi bi-circle-fill"></i>
+                            <p>
+                                Reviews (moderation)
+                                <i class="nav-arrow bi bi-chevron-right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.review.moderation')}}" class="nav-link">
+                                    <i class="nav-icon bi bi-circle"></i>
+                                    <p>List</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon bi bi-circle-fill"></i>
+                            <p>
+                                FAQ
+                                <i class="nav-arrow bi bi-chevron-right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.faq.index')}}" class="nav-link">
+                                    <i class="nav-icon bi bi-circle"></i>
+                                    <p>List</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.faq.create')}}" class="nav-link">
+                                    <i class="nav-icon bi bi-circle"></i>
+                                    <p>Add</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon bi bi-circle-fill"></i>
+                            <p>
+                                Social network
+                                <i class="nav-arrow bi bi-chevron-right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.social.index')}}" class="nav-link">
+                                    <i class="nav-icon bi bi-circle"></i>
+                                    <p>List</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.social.create')}}" class="nav-link">
+                                    <i class="nav-icon bi bi-circle"></i>
+                                    <p>Add</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon bi bi-circle-fill"></i>
+                            <p>
+                                Info (About us)
+                                <i class="nav-arrow bi bi-chevron-right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.info.index')}}" class="nav-link">
+                                    <i class="nav-icon bi bi-circle"></i>
+                                    <p>List</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.info.create')}}" class="nav-link">
+                                    <i class="nav-icon bi bi-circle"></i>
+                                    <p>Add</p>
                                 </a>
                             </li>
                         </ul>

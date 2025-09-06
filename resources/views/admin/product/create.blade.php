@@ -52,12 +52,12 @@
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Weight</label>
-                            <input type="number" required name="weight" class="form-control" id="exampleInputEmail1"
+                            <input type="text" required name="weight" class="form-control" id="exampleInputEmail1"
                                    aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Price</label>
-                            <input type="number" required name="price" class="form-control" id="exampleInputEmail1"
+                            <input type="number" step="0.1" required name="price" class="form-control" id="exampleInputEmail1"
                                    aria-describedby="emailHelp">
                         </div>
 

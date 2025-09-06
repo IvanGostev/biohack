@@ -40,7 +40,7 @@
                     <p>${{$product->price}}</p>
                 </div>
                 <p class="good__description">{{$product->description}}</p>
-                <p class="good__weight"><span>Package quantity: </span> {{$product->weight}}g</p>
+                <p class="good__weight"><span>Package quantity: </span> {{$product->weight}}</p>
                 <p class="good__delivery">Select your delivery options:</p>
                 <div class="good__options">
                     <div class="good__option">
@@ -67,8 +67,9 @@
                             @foreach($product->delivery() as $item)
                                 <option
                                     {{$deliveryIdActive == $item->delivery()->id ? 'selected' : '' }} value="{{$item->delivery()->id}}">{{$item->delivery()->title}}</option>
+                            @endforeach
                         </select>
-                        @endforeach
+
                     </div>
                 </div>
                 <div class="good__control">
@@ -117,10 +118,13 @@
                     " enctype='multipart/form-data' action="{{route('review')}}">
                         @csrf
                         <input type="text" name="product_id" hidden value="{{$product->id}}">
-                        <div style="width: 100%; ; padding-bottom: 20px; border-radius: 8px;">
+                        <div style="width: 100%; background-color: #f2f7f8; margin-bottom: 20px; border-radius: 8px; display: flex">
                             <input multiple type="file"
-                                   style="width: 100%;padding: 10px; background-color: #f2f7f8; border-radius: 8px"
+                                   style="width: 100%;padding: 10px; ; border-radius: 8px"
                                    id="" accept="image/png, image/jpeg" name="images[]">
+                            <p style="width: 140px; padding: 10px 10px 0 0;">
+                                up to 5 images
+                            </p>
                         </div>
                         <div style="width: 100%; ; padding-bottom: 20px; border-radius: 8px; ">
                     <textarea style="width: 100%;padding: 10px; background-color: #f2f7f8; border-radius: 8px"
@@ -139,21 +143,32 @@
                             <br>
                             @if(auth()->check() and auth()->user()->id == $review->user()->id)
                                 <input type="text" hidden name="review_id" value="{{$review->id}}">
-                                <button type="submit" class="reviews__btn">Delete</button>
+                                <button style="
+                                width: 100%;
+    height: 38px;
+        padding: 0;
+                                " type="submit" class="reviews__btn">Delete
+                                </button>
                             @endif
                         </div>
                         <div class="review__right">
                             <p class="review__top">{{$review->text}}</p>
                             <p class="review__bottom">
                                 @foreach($review->images() as $image)
-                                    <img src="{{asset('storage/' . $image->patch)}}" alt="">
+                                    <img style="width: 109px; height: 133px" src="{{asset('storage/' . $image->patch)}}"
+                                         alt="">
                                 @endforeach()
                             </p>
                         </div>
                     </form>
                 @endforeach()
-{{--                <a name='showmore' class="reviews__more">SHOW MORE</a>--}}
+                {{--                <a name='showmore' class="reviews__more">SHOW MORE</a>--}}
             </div>
         </div>
     </section>
+    <div id="img-viewer">
+        <a class="close" href="{{route('product', $product->id)}}">&times;</a>
+        <img class="modal-content" id="full-image" >
+    </div>
+
 @endsection
