@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('password');
             $table->bigInteger('balance')->default('0');
+            $table->string('role')->default('user');
             $table->bigInteger('ref')->nullable();
             $table->rememberToken();
             $table->timestamps();

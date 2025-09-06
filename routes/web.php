@@ -48,7 +48,7 @@ Route::controller(RefController::class)->group(function () {
 });
 
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::prefix('products')->name('product.')->controller(ProductAdminController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/create', 'create')->name('create');
