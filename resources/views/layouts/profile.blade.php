@@ -14,7 +14,11 @@
 <header class="header" id="header">
     <nav class="nav container">
         <div class="nav__left">
-            <a  href="{{route('index')}}" style="cursor: pointer" class="nav__logo">BIOHACKERS</a>
+            <a href="{{route('index')}}" style="cursor: pointer; display: flex
+;
+    align-items: center;" class="nav__logo" >
+                <img style="width: 50px; height: 50px; margin-right: 20px;" src="{{asset('img/back2.png')}}" alt="">
+                <p style="display: inline-block;     vertical-align: middle;">BIOHACKERS</p></a>
         </div>
         <ul class="nav__center">
             <a class="nav__item" href="/#about">ABOUT US</a>
