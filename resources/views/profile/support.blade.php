@@ -11,7 +11,23 @@
     <div class="account__chat">
         @foreach($messages as $message)
             <div class="account__message{{$message->whom == 'user' ? 'left' : ''}}">
-                <p class="text">{{$message->text}}</p>
+                <p style="padding-bottom: 5px; font-weight: 600; font-size: 14px">{{$message->whom == 'user' ? 'Support' : auth()->user()->name}}</p>
+                <div class="main" style="display: flex; gap: 10px;">
+
+                    <img
+                        @if($message->whom == 'user')
+                            src="{{asset('img/back2.png')}}"
+                        @else
+                            src="{{ auth()->user()->avatar ? asset('storage/' . auth()->user()->avatar) : '/img/user.png' }}"
+                        @endif
+                        alt="" style="width: 40px; height: 40px; border-radius: 100px">
+                    <p style="    border-radius: 12px;
+    display: inline-block;
+    background-color: #7fdbda33;
+    padding: 12px;
+    font-size: 16px;" class="text">{{$message->text}}</p>
+                </div>
+
                 <p class="date">{{$message->created_at}}</p>
             </div>
         @endforeach()

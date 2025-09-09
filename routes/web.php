@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\BannerAdminController;
+use App\Http\Controllers\Admin\ChainAdminController;
 use App\Http\Controllers\Admin\CountryAdminController;
 use App\Http\Controllers\Admin\DeliveryAdminController;
 use App\Http\Controllers\Admin\FaqAdminController;
@@ -9,6 +11,7 @@ use App\Http\Controllers\Admin\ProductAdminController;
 use App\Http\Controllers\Admin\QuestionAdminController;
 use App\Http\Controllers\Admin\ReviewAdminController;
 use App\Http\Controllers\Admin\SocialAdminController;
+use App\Http\Controllers\Admin\TriggerAdminController;
 use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\Admin\BalanceAdminController;
 use App\Http\Controllers\MainController;
@@ -47,8 +50,8 @@ Route::controller(RefController::class)->group(function () {
     Route::get('/{user}/referral',  'referral')->name('referral');
 });
 
-
-Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
+//->middleware('admin')
+Route::prefix('admin')->name('admin.')->group(function () {
     Route::prefix('products')->name('product.')->controller(ProductAdminController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/create', 'create')->name('create');
@@ -56,6 +59,24 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
         Route::get('/{product}/edit', 'edit')->name('edit');
         Route::patch('/{product}/update', 'update')->name('update');
         Route::delete('{product}/delete', 'delete')->name('delete');
+    });
+    Route::prefix('chains')->name('chain.')->controller(ChainAdminController::class)->group(function () {
+        Route::get('/{product}/items', 'index')->name('index');
+        Route::get('/{product}/create', 'create')->name('create');
+        Route::post('/{product}/store', 'store')->name('store');
+        Route::delete('{chain}/delete', 'delete')->name('delete');
+    });
+    Route::prefix('triggers')->name('trigger.')->controller(TriggerAdminController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::delete('{trigger}/delete', 'delete')->name('delete');
+    });
+    Route::prefix('banners')->name('banner.')->controller(BannerAdminController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::delete('{banner}/delete', 'delete')->name('delete');
     });
     Route::prefix('orders')->name('order.')->controller(OrderAdminController::class)->group(function () {
         Route::get('/', 'index')->name('index');
@@ -72,7 +93,7 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::prefix('reviews')->name('review.')->controller(ReviewAdminController::class)->group(function () {
         Route::get('/{product}/product', 'index')->name('index');
         Route::get('/moderation', 'moderation')->name('moderation');
-        Route::post('/{status}/moderation', 'status')->name('status');
+        Route::post('/{review}/{status}/moderation', 'status')->name('status');
         Route::delete('{review}/delete', 'delete')->name('delete');
     });
     Route::prefix('country')->name('country.')->controller(CountryAdminController::class)->group(function () {

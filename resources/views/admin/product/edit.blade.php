@@ -12,30 +12,6 @@
                     @method('patch')
                     <div class="card-body">
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">From</label>
-                            <select multiple="multiple"  class="form-select" id="validationCustom04" required name="from[]">
-                                @foreach($countries as $country)
-                                    <option {{in_array($country->id, $fromActive) ? 'selected' : ''}} value="{{$country->id}}">{{$country->title}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">To</label>
-                            <select multiple="multiple"  class="form-select" id="validationCustom04" required name="to[]">
-                                @foreach($countries as $country)
-                                    <option {{in_array($country->id, $toActive) ? 'selected' : ''}} value="{{$country->id}}">{{$country->title}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Deliveries</label>
-                            <select multiple="multiple"  class="form-select" id="validationCustom04" required name="deliveries[]">
-                                @foreach($deliveries as $delivery)
-                                    <option {{in_array($delivery->id, $deliveriesActive) ? 'selected' : ''}} value="{{$delivery->id}}">{{$delivery->title}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Title</label>
                             <input type="text" required name="title" value="{{$product->title}}" class="form-control">
                         </div>

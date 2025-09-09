@@ -17,6 +17,7 @@
                             <th scope="col" style="width: 20px"></th>
                             <th scope="col" style="width: 20px"></th>
                             <th scope="col" style="width: 20px"></th>
+                            <th scope="col" style="width: 20px"></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -26,6 +27,7 @@
                                 <td>
                                     <p>{{$product->title}}</p>
                                 </td>
+
                                 <td>
                                     <a type="submit" class="btn btn-dark" href="{{route('admin.review.index', $product->id)}}">Reviews</a>
                                 </td>
@@ -34,6 +36,9 @@
                                 </td>
                                 <td>
                                     <a type="submit" class="btn btn-dark" href="{{route('admin.product.edit', $product->id)}}">Edit</a>
+                                </td>
+                                <td>
+                                    <a type="submit" class="btn btn-dark" href="{{route('admin.chain.index', $product->id)}}">Chains</a>
                                 </td>
                                 <td>
                                     <form action="{{route('admin.product.delete', $product->id)}}" method="post">

@@ -42,35 +42,46 @@
                 <p class="good__description">{{$product->description}}</p>
                 <p class="good__weight"><span>Package quantity: </span> {{$product->weight}}</p>
                 <p class="good__delivery">Select your delivery options:</p>
+                <input type="text" hidden name="fromIdActive" value="{{$fromIdActive}}">
+                <input type="text" hidden name="toIdActive" value="{{$toIdActive}}">
+                <input type="text" hidden name="deliveryIdActive" value="{{$deliveryIdActive}}">
                 <div class="good__options">
-                    <div class="good__option">
-                        <p>From:</p>
-                        <select name="fromIdActive">
-                            @foreach($product->from() as $item)
-                                <option
-                                    {{$fromIdActive == $item->country()->id ? 'selected' : '' }}  value="{{$item->country()->id}}">{{$item->country()->title}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="good__option">
-                        <p>To:</p>
-                        <select name="toIdActive">
-                            @foreach($product->to() as $item)
-                                <option
-                                    {{$toIdActive == $item->country()->id ? 'selected' : '' }} value="{{$item->country()->id}}">{{$item->country()->title}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="good__option">
-                        <p>Shipping:</p>
-                        <select name="deliveryIdActive">
-                            @foreach($product->delivery() as $item)
-                                <option
-                                    {{$deliveryIdActive == $item->delivery()->id ? 'selected' : '' }} value="{{$item->delivery()->id}}">{{$item->delivery()->title}}</option>
-                            @endforeach
-                        </select>
+                    @if($panel == 'from')
+                        <div class="good__option">
+                            <p>From:</p>
+                            <select name="fromIdActive">
+                                @foreach($froms as $from)
+                                    <option
+                                        {{$fromIdActive == $from->from()->id ? 'selected' : '' }}  value="{{$from->from()->id}}">{{$from->from()->title}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    @endif
+                    @if($panel == 'to')
+                        <div class="good__option">
+                            <p>To:</p>
+                            <select name="toIdActive">
+                                @foreach($tos as $item)
+                                    <option
+                                        {{$toIdActive == $item->to()->id ? 'selected' : '' }} value="{{$item->to()->id}}">{{$item->to()->title}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    @endif
+                    @if($panel == 'delivery')
+                        <div class="good__option">
+                            <p>Shipping:</p>
+                            <select name="deliveryIdActive">
+                                @foreach($deliveries as $item)
+                                    <option
+                                        {{$deliveryIdActive == $item->delivery()->id ? 'selected' : '' }} value="{{$item->delivery()->id}}">{{$item->delivery()->title}}</option>
+                                @endforeach
+                            </select>
 
-                    </div>
+                        </div>
+                    @endif
+
+
                 </div>
                 <div class="good__control">
                     <div class="good__count">
@@ -83,16 +94,40 @@
                             <img src="{{asset('./img/add.svg')}}" alt="">
                         </button>
                     </div>
-                    <button class="good__btn" type="submit" name="cart" value="1">ADD TO CART</button>
-                </div>
-                <div class="good__faq">
-                    @foreach($product->questions() as $question)
-                        <details>
-                            <summary>{{$question->title}}</summary>
-                            <p>{{$question->answer}}</p>
-                        </details>
-                    @endforeach()
-                </div>
+
+                    @if($panel == 'from')
+                        <button class="good__btn" type="submit" name="selectionto" value="1">Go to the selection "To"
+                        </button>
+                    @elseif($panel == 'to')
+                        <div style="display: flex; gap: 10px; width: 100%; max-height: 50px">
+                            <button style="width: 100%; display: block" class="good__btn" type="submit"
+                                    name="selectionfrom" value="1">Go back to the
+                                selection "From"
+                            </button>
+                            <button style="width: 100%; display: block" class="good__btn" type="submit"
+                                    name="selectiondelivery" value="1">Go to the
+                                selection "Delivery"
+                            </button>
+                        </div>
+                    @elseif($panel == 'delivery')
+                        <div style="display: flex; gap: 10px; width: 100%; max-height: 50px">
+                            <button style="width: 100%; display: block" class="good__btn" type="submit"
+                                    name="selectionto" value="1">Go back to the
+                                selection "To"
+                            </button>
+                            <button style="width: 100%; display: block" class="good__btn" type="submit" name="cart"
+                                    value="1">ADD TO CART
+                            </button>
+                        </div>
+                    @endif
+                    <div class="good__faq">
+                        @foreach($product->questions() as $question)
+                            <details>
+                                <summary>{{$question->title}}</summary>
+                                <p>{{$question->answer}}</p>
+                            </details>
+                        @endforeach()
+                    </div>
             </form>
         </div>
     </section>
@@ -103,17 +138,20 @@
                     <h6 class="reviews__title">Customer Reviews</h6>
                     <h6 class="reviews__reviews">{{$product->countReviews()}} Reviews</h6>
                 </div>
+
                 <form class="reviews__right" href="#reviews">
-                    <button class="reviews__btn" name="writeReview" value="display"
-                            style="display: {{$writeReview == 'display' ? 'none' : 'display'}}">WRITE A REVIEW
-                    </button>
-                    <button style="display: {{$writeReview == 'display' ? 'display' : 'none'}}" class="reviews__btn"
-                            name="writeReview" value="none">HIDE THE FORM
-                    </button>
+                    @if(!(auth()->user()->countReviews($product->id) > 0))
+                        <button class="reviews__btn" name="writeReview" value="display"
+                                style="display: {{($writeReview == 'display' or $errors->has('image')) ? 'none' : 'display'}}">WRITE A REVIEW
+                        </button>
+                        <button style="display: {{($writeReview == 'display' or $errors->has('image')) ? 'display' : 'none'}}" class="reviews__btn"
+                                name="writeReview" value="none">HIDE THE FORM
+                        </button>
+                    @endif
                 </form>
             </div>
             <div class="reviews__main" id="reviews">
-                @if($writeReview == 'display')
+                @if($writeReview == 'display' or $errors->has('image'))
                     <form method="post" class="review-create" style="width: 100%; gap: 10px; display: flex; flex-direction: column; margin-bottom: 60px
                     " enctype='multipart/form-data' action="{{route('review')}}">
                         @csrf
@@ -132,25 +170,35 @@
                               name="text"
                               required id="" placeholder="Your text ..."></textarea>
                         </div>
+                        <p style="color: red">{{$errors->first('image')}}</p>
                         <button class="reviews__btn" type="submit" style="display: inline-block">Submit</button>
                     </form>
                 @endif
+
                 @foreach($reviews as $review)
                     <form class="review" action="{{route('review.delete')}}" method="post">
                         @csrf
                         <div class="review__left">
-                            <h5 class="review__name">{{$review->user()->name}}</h5>
-                            <h6 class="review__date">{{$review->created_at}}</h6>
-                            <br>
-                            @if(auth()->check() and auth()->user()->id == $review->user()->id)
-                                <input type="text" hidden name="review_id" value="{{$review->id}}">
-                                <button style="
+                            <div>
+                                <img style="width: 58px; height: 58px; border-radius: 100px"
+                                    src="{{ auth()->user()->avatar ? asset('storage/' . auth()->user()->avatar) : '/img/user.png' }}"
+                                    alt="">
+                            </div>
+                            <div>
+                                <h5 class="review__name">{{$review->user()->name}}</h5>
+                                <h6 class="review__date">{{$review->created_at}}</h6>
+                                <br>
+                                @if(auth()->check() and auth()->user()->id == $review->user()->id)
+                                    <input type="text" hidden name="review_id" value="{{$review->id}}">
+                                    <button style="
                                 width: 100%;
     height: 38px;
         padding: 0;
                                 " type="submit" class="reviews__btn">Delete
-                                </button>
-                            @endif
+                                    </button>
+                                @endif
+                            </div>
+
                         </div>
                         <div class="review__right">
                             <p class="review__top">{{$review->text}}</p>

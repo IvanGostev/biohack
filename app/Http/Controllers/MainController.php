@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\CartProduct;
+use App\Models\Chain;
 use App\Models\Faq;
 use App\Models\Info;
 use App\Models\Product;
-use App\Models\ProductCountry;
-use App\Models\ProductDelivery;
 use App\Models\ProductImage;
 use App\Models\ProductReview;
 use App\Models\ProductReviewImage;
@@ -26,7 +25,7 @@ class MainController extends Controller
 
     public function product(Product $product, Request $request)
     {
-        $reviews = ProductReview::where('product_id', $product->id)->get();
+        $reviews = ProductReview::where('product_id', $product->id)->where('status', 'approve')->get();
         $activeImage = $request->imageId ? ProductImage::where('product_id', $product->id)->where('id', $request->imageId)->first() : ProductImage::where('product_id', $product->id)->first();
         if ($request->action) {
             if ($request->action == 'left') {
@@ -51,20 +50,20 @@ class MainController extends Controller
         if ($request->toIdActive) {
             $toIdActive = $request->toIdActive;
         } else {
-            $toIdActive = ProductCountry::where('product_id', $product->id)->where('type', 'to')->first()->country_id;
+            $toIdActive = 0;
         }
 
         if ($request->fromIdActive) {
             $fromIdActive = $request->fromIdActive;
         } else {
-            $fromIdActive = ProductCountry::where('product_id', $product->id)->where('type', 'from')->first()->country_id;
+            $fromIdActive = 0;
         }
 
 
         if ($request->deliveryIdActive) {
             $deliveryIdActive = $request->deliveryIdActive;
         } else {
-            $deliveryIdActive = ProductDelivery::where('product_id', $product->id)->first()->delivery_id;
+            $deliveryIdActive = 0;
         }
 
         if ($request->countActive) {
@@ -109,14 +108,46 @@ class MainController extends Controller
             return redirect()->route('profile.cart');
         }
 
-        return view('product', compact('product', 'activeImage', 'toIdActive', 'deliveryIdActive', 'fromIdActive', 'countActive', 'writeReview', 'reviews', 'imageFileActive'));
+        $froms = [];
+        $tos = [];
+        $deliveries = [];
+
+        if ($request->selectiondelivery and $request->toIdActive and $request->fromIdActive) {
+            $fromIdActive = $request->fromIdActive;
+            $toIdActive = $request->toIdActive;
+            $deliveries = Chain::where('product_id', $product->id)->where('from', $fromIdActive)->where('to', $toIdActive)->get();
+            $panel = 'delivery';
+        } elseif ($request->selectionto and $request->fromIdActive) {
+            $fromIdActive = $request->fromIdActive;
+            $deliveryIdActive = 0;
+            $tos = Chain::where('product_id', $product->id)->where('from', $fromIdActive)->get();
+            $panel = 'to';
+        } elseif ($request->selectionfrom) {
+            $toIdActive = 0;
+            $deliveryIdActive = 0;
+            $froms = Chain::where('product_id', $product->id)->get();
+            $panel = 'from';
+        } else {
+            if (Chain::where('from', $request->fromIdActive)->where('to', $request->toIdActive)->where('delivery_id', $request->deliveryIdActive)->first()) {
+                $panel = 'delivery';
+                $deliveries = Chain::where('product_id', $product->id)->where('from', $fromIdActive)->where('to', $toIdActive)->get();
+            } elseif (Chain::where('from', $request->fromIdActive)->where('to', $request->toIdActive)->first()) {
+                $panel = 'to';
+                $tos = Chain::where('product_id', $product->id)->where('from', $fromIdActive)->get();
+            } else {
+                $panel = 'from';
+                $froms = Chain::where('product_id', $product->id)->get();
+            }
+        }
+
+        return view('product', compact('product', 'activeImage', 'toIdActive', 'deliveryIdActive', 'fromIdActive', 'countActive', 'writeReview', 'reviews', 'imageFileActive', 'froms', 'tos', 'deliveries', 'panel'));
     }
 
     public function review(Request $request)
     {
         $all = $request->all();
         if (isset($all['images']) and count($all['images']) > 5) {
-            return redirect()->route('product', $all['product_id']);
+            return redirect()->route('product', $all['product_id'])->withErrors(['image' => 'Up to 5 images']);
         }
         $pr = ProductReview::create([
             'product_id' => $all['product_id'],

@@ -3,6 +3,7 @@ body {
     font-optical-sizing: auto;
     color: #222222;
 }
+
 .container {
     padding: 0 12px;
     margin: 0 auto;
@@ -21,7 +22,8 @@ body {
 .crumbs .container {
     max-width: 1248px;
 }
-.crumbs .container a{
+
+.crumbs .container a {
     color: #009d9a;
 }
 
@@ -31,17 +33,20 @@ body {
     flex-direction: column;
     align-items: center;
 }
+
 .form__logo {
     font-size: 38px;
     font-weight: 700;
     color: #009d9a;
     padding-bottom: 38px;
 }
+
 .form__title {
     font-size: 44px;
     font-weight: 700;
     padding-bottom: 38px;
 }
+
 .form .container .input {
     background-color: #f2f7f8;
     max-width: 393px;
@@ -50,11 +55,13 @@ body {
     margin-bottom: 12px;
     border-radius: 8px;
 }
+
 .form .container input {
     margin: 0 16px;
     height: 100%;
     width: 90%;
 }
+
 .form__btn {
     border: 1px solid #009d9a;
     max-width: 393px;
@@ -62,14 +69,19 @@ body {
     height: 38px;
     border-radius: 100px;
 }
+
 .form__btn.signup {
-    background-color: #009d9a;
+    border: 0 solid #009d9a;
+    background-color: rgba(255, 127, 80, 1);
     color: white;
 }
+
 .form__btn.signup:hover {
     background-color: white;
     color: #009d9a;
+    border: 1px solid #009d9a;
 }
+
 .form__btn.telegram {
     color: #009d9a;
 }
@@ -89,28 +101,34 @@ body {
     gap: 12px;
     height: 20px;
 }
+
 .beetween__center {
     font-size: 14px;
     color: #697777;
 }
+
 .between__right, .between__left {
     width: 100%;
     display: block;
     background-color: #7FDBDA80;
     height: 1px;
 }
+
 .form__already {
     padding-top: 34px;
     padding-bottom: 48px;
 }
+
 .form__already a {
     color: #009D9A;
     font-size: 16px;
 }
+
 .form__pp {
     color: #697777;
     font-size: 14px;
 }
+
 .footer {
     width: 100%;
     position: fixed;
@@ -118,6 +136,7 @@ body {
     bottom: 0;
     height: 60px;
 }
+
 .footer .container {
     max-width: 1148px;
     padding-top: 14px;

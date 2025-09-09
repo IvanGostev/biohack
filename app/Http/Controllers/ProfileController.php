@@ -9,6 +9,7 @@ use App\Models\CartProduct;
 use App\Models\Image;
 use App\Models\Message;
 use App\Models\Order;
+use App\Models\Trigger;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -169,7 +170,16 @@ public function message(Request $request) {
             'type' => $all['type'],
             'user_id' => $all['user_id']
         ]);
+        $triggers = Trigger::where('action', $all['type'])->get();
 
+        foreach ($triggers as $trigger) {
+            Message::create([
+                'text' => $trigger->text,
+                'status' => 'new',
+                'whom' => 'user',
+                'user_id' => $all['user_id']
+            ]);
+        }
         return redirect()->route('profile.balance');
     }
 }

@@ -72,4 +72,8 @@ class User extends Authenticatable
         }
         return false;
     }
+
+    public function countReviews($id) {
+        return ProductReview::where('product_id', $id)->where('user_id', $this->id)->count();
+    }
 }

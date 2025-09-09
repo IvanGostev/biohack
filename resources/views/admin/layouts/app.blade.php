@@ -185,7 +185,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon bi bi-circle-fill"></i>
+                            <i class="nav-icon bi bi-circle-fill" style="{{checkOrder() ? 'color:blue;' : ''}}"></i>
                             <p>
                                 Orders
                                 <i class="nav-arrow bi bi-chevron-right"></i>
@@ -202,7 +202,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon bi bi-circle-fill"></i>
+                            <i class="nav-icon bi bi-circle-fill" style="{{checkMessage() ? 'color:blue;' : ''}}"></i>
                             <p>
                                 Users (Chats)
                                 <i class="nav-arrow bi bi-chevron-right"></i>
@@ -219,10 +219,10 @@
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon bi bi-circle-fill"></i>
+                            <i class="nav-icon bi bi-circle-fill" style="{{checkBalance() ? 'color:blue;' : ''}}" ></i>
                             <p>
                                 Balance
-                                <i class="nav-arrow bi bi-chevron-right"></i>
+                                <i   class="nav-arrow bi bi-chevron-right"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
@@ -236,7 +236,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon bi bi-circle-fill"></i>
+                            <i class="nav-icon bi bi-circle-fill" style="{{checkReview() ? 'color:blue;' : ''}}"></i>
                             <p>
                                 Reviews (moderation)
                                 <i class="nav-arrow bi bi-chevron-right"></i>
@@ -320,6 +320,56 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{{route('admin.info.create')}}" class="nav-link">
+                                    <i class="nav-icon bi bi-circle"></i>
+                                    <p>Add</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon bi bi-circle-fill"></i>
+                            <p>
+                                Triggers
+                                <i class="nav-arrow bi bi-chevron-right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.trigger.index')}}" class="nav-link">
+                                    <i class="nav-icon bi bi-circle"></i>
+                                    <p>List</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.trigger.create')}}" class="nav-link">
+                                    <i class="nav-icon bi bi-circle"></i>
+                                    <p>Add</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon bi bi-circle-fill"></i>
+                            <p>
+                                Banners
+                                <i class="nav-arrow bi bi-chevron-right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.banner.index')}}" class="nav-link">
+                                    <i class="nav-icon bi bi-circle"></i>
+                                    <p>List</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('admin.banner.create')}}" class="nav-link">
                                     <i class="nav-icon bi bi-circle"></i>
                                     <p>Add</p>
                                 </a>

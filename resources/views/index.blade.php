@@ -1,17 +1,18 @@
 @extends('layouts.app')
 @section('content')
+    @if(banner())
     <section class="banner">
-        <div class="container">
+        <div class="container" style="background-image: url({{asset('storage/' . banner()->img)}})!important">
             <div class="banner__main">
-                <h4 class="banner__title">Biohack your body <br>
-                    Unclock your potential</h4>
+                <h4 class="banner__title">{!! banner()->title !!}}</h4>
                 <p class="banner__descritpion">
-                    Smart sepplements and tools to help you think <br> sharper, sleep better, and feel more alive.
+                    {!! banner()->text !!}}
                 </p>
-                <a href="#store" class="banner__btn"><p>shop new</p></a>
+                <a href="{{banner()->btnlink}}" class="banner__btn"><p>{{banner()->btntext}}</p></a>
             </div>
         </div>
     </section>
+    @endif
     @foreach($infos as $info)
         <section class="about" id="about">
             <div class="container" style="justify-content: space-between; ">

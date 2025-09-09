@@ -15,7 +15,7 @@
                         <thead>
                         <tr>
                             <th style="width: 10px" scope="col">#</th>
-                            <th scope="col" style="width: 10px">Who</th>
+                            <th scope="col" style="width: 10px">Name</th>
                             <th scope="col">Text</th>
                         </tr>
                         </thead>
@@ -24,7 +24,7 @@
                             <tr class="align-middle">
                                 <td>{{$message->id}}</td>
                                 <td>
-                                    <p>{{$message->whom == 'user' ? 'support' : 'user'}}</p>
+                                    <p>{{$message->whom == 'user' ? 'Support' : $message->user()->name}}</p>
                                 </td>
                                 <td>
                                     <p>{{$message->text}}</p>

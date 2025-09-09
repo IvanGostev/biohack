@@ -20,17 +20,17 @@ class Product extends Model
         return ProductReview::where('product_id', $this->id)->count();
     }
 
-    public function to() {
-        return ProductCountry::where('type', 'to')->where('product_id', $this->id)->get();
-    }
-
-    public function from() {
-        return ProductCountry::where('type', 'from')->where('product_id', $this->id)->get();
-    }
-
-    public function delivery() {
-        return ProductDelivery::where('product_id', $this->id)->get();
-    }
+//    public function to() {
+//        return ProductCountry::where('type', 'to')->where('product_id', $this->id)->get();
+//    }
+//
+//    public function from() {
+//        return ProductCountry::where('type', 'from')->where('product_id', $this->id)->get();
+//    }
+//
+//    public function delivery() {
+//        return ProductDelivery::where('product_id', $this->id)->get();
+//    }
 
     public function questions() {
         return ProductQuestion::where('product_id', $this->id)->get();

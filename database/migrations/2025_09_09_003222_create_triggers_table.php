@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\Country;
-use App\Models\Product;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_countries', function (Blueprint $table) {
+        Schema::create('triggers', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Country::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Product::class)->constrained()->cascadeOnDelete();
-            $table->string('type');
+            $table->string('action');
+            $table->string('text');
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product_countries');
+        Schema::dropIfExists('triggers');
     }
 };
