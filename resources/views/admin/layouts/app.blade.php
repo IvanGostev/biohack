@@ -53,34 +53,34 @@
 <!--begin::App Wrapper-->
 <div class="app-wrapper">
     <!--begin::Header-->
-    <nav class="app-header navbar navbar-expand bg-body">
-        <!--begin::Container-->
-        <div class="container-fluid">
-            <!--begin::Start Navbar Links-->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button">
-                        <i class="bi bi-list"></i>
-                    </a>
-                </li>
-                {{--                <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Home</a></li>--}}
-                {{--                <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Contact</a></li>--}}
-            </ul>
-            <!--end::Start Navbar Links-->
-            <!--begin::End Navbar Links-->
-            <ul class="navbar-nav ms-auto">
+{{--    <nav class="app-header navbar navbar-expand bg-body">--}}
+{{--        <!--begin::Container-->--}}
+{{--        <div class="container-fluid">--}}
+{{--            <!--begin::Start Navbar Links-->--}}
+{{--            <ul class="navbar-nav">--}}
+{{--                <li class="nav-item menu-open">--}}
+{{--                    <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button">--}}
+{{--                        <i class="bi bi-list"></i>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--                --}}{{--                <li class="nav-item menu-open d-none d-md-block"><a href="#" class="nav-link">Home</a></li>--}}
+{{--                --}}{{--                <li class="nav-item menu-open d-none d-md-block"><a href="#" class="nav-link">Contact</a></li>--}}
+{{--            </ul>--}}
+{{--            <!--end::Start Navbar Links-->--}}
+{{--            <!--begin::End Navbar Links-->--}}
+{{--            <ul class="navbar-nav ms-auto">--}}
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#" data-lte-toggle="fullscreen">
-                        <i data-lte-icon="maximize" class="bi bi-arrows-fullscreen"></i>
-                        <i data-lte-icon="minimize" class="bi bi-fullscreen-exit" style="display: none"></i>
-                    </a>
-                </li>
-            </ul>
-            <!--end::End Navbar Links-->
-        </div>
-        <!--end::Container-->
-    </nav>
+{{--                <li class="nav-item menu-open">--}}
+{{--                    <a class="nav-link" href="#" data-lte-toggle="fullscreen">--}}
+{{--                        <i data-lte-icon="maximize" class="bi bi-arrows-fullscreen"></i>--}}
+{{--                        <i data-lte-icon="minimize" class="bi bi-fullscreen-exit" style="display: none"></i>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--            </ul>--}}
+{{--            <!--end::End Navbar Links-->--}}
+{{--        </div>--}}
+{{--        <!--end::Container-->--}}
+{{--    </nav>--}}
     <!--end::Header-->
     <!--begin::Sidebar-->
     <aside class="app-sidebar bg-dark shadow" data-bs-theme="dark">
@@ -108,269 +108,262 @@
                     id="navigation"
                 >
                     <li class="nav-header">MENU</li>
-                    <li class="nav-item">
+                    <li class="nav-item menu-open">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon bi bi-circle-fill"></i>
+                            <div style="width: 1rem; height: 1rem; border-radius: 100px; background-color: white"></div>
+{{--                            <i class="nav-icon bi bi-circle-fill"></i>--}}
                             <p>
                                 Countries
-                                <i class="nav-arrow bi bi-chevron-right"></i>
+{{--                                <i class="nav-arrow bi bi-chevron-right"></i>--}}
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
+                            <li class="nav-item menu-open">
                                 <a href="{{route('admin.country.index')}}" class="nav-link">
-                                    <i class="nav-icon bi bi-circle"></i>
                                     <p>List</p>
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
+                            <li class="nav-item menu-open">
                                 <a href="{{route('admin.country.create')}}" class="nav-link">
-                                    <i class="nav-icon bi bi-circle"></i>
                                     <p>Add</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item menu-open">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon bi bi-circle-fill"></i>
+                            <div style="width: 1rem; height: 1rem; border-radius: 100px; background-color: white"></div>
+{{--                            <i class="nav-icon bi bi-circle-fill"></i>--}}
                             <p>
                                 Deliveries
-                                <i class="nav-arrow bi bi-chevron-right"></i>
+{{--                                <i class="nav-arrow bi bi-chevron-right"></i>--}}
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
+                            <li class="nav-item menu-open">
                                 <a href="{{route('admin.delivery.index')}}" class="nav-link">
-                                    <i class="nav-icon bi bi-circle"></i>
                                     <p>List</p>
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
+                            <li class="nav-item menu-open">
                                 <a href="{{route('admin.delivery.create')}}" class="nav-link">
-                                    <i class="nav-icon bi bi-circle"></i>
                                     <p>Add</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item menu-open">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon bi bi-circle-fill"></i>
+                            <div style="width: 1rem; height: 1rem; border-radius: 100px; background-color: white"></div>
+{{--                            <i class="nav-icon bi bi-circle-fill"></i>--}}
                             <p>
                                 Products
-                                <i class="nav-arrow bi bi-chevron-right"></i>
+{{--                                <i class="nav-arrow bi bi-chevron-right"></i>--}}
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
+                            <li class="nav-item menu-open">
                                 <a href="{{route('admin.product.index')}}" class="nav-link">
-                                    <i class="nav-icon bi bi-circle"></i>
                                     <p>List</p>
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
+                            <li class="nav-item menu-open">
                                 <a href="{{route('admin.product.create')}}" class="nav-link">
-                                    <i class="nav-icon bi bi-circle"></i>
                                     <p>Add</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item menu-open">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon bi bi-circle-fill" style="{{checkOrder() ? 'color:blue;' : ''}}"></i>
+                            <div style="width: 1rem; height: 1rem; border-radius: 100px; {{checkOrder() ? 'background-color: blue;' : 'background-color: white'}} "></div>
+{{--                            <i class="nav-icon bi bi-circle-fill" style="{{}}"></i>--}}
                             <p>
                                 Orders
-                                <i class="nav-arrow bi bi-chevron-right"></i>
+{{--                                <i class="nav-arrow bi bi-chevron-right"></i>--}}
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
+                            <li class="nav-item menu-open">
                                 <a href="{{route('admin.order.index')}}" class="nav-link">
-                                    <i class="nav-icon bi bi-circle"></i>
                                     <p>List</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item menu-open">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon bi bi-circle-fill" style="{{checkMessage() ? 'color:blue;' : ''}}"></i>
+                            <div style="width: 1rem; height: 1rem; border-radius: 100px; {{checkMessage() ? 'background-color: blue;' : 'background-color: white'}}"></div>
+{{--                            <i class="nav-icon bi bi-circle-fill" style="{{() ? 'color:blue;' : ''}}"></i>--}}
                             <p>
                                 Users (Chats)
-                                <i class="nav-arrow bi bi-chevron-right"></i>
+{{--                                <i class="nav-arrow bi bi-chevron-right"></i>--}}
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
+                            <li class="nav-item menu-open">
                                 <a href="{{route('admin.user.index')}}" class="nav-link">
-                                    <i class="nav-icon bi bi-circle"></i>
                                     <p>List</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item menu-open">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon bi bi-circle-fill" style="{{checkBalance() ? 'color:blue;' : ''}}" ></i>
+                            <div style="width: 1rem; height: 1rem; border-radius: 100px; {{checkBalance() ? 'background-color: blue;' : 'background-color: white'}}"></div>
+{{--                            <i class="nav-icon bi bi-circle-fill" style="{{checkBalance() ? 'color:blue;' : ''}}" ></i>--}}
+
                             <p>
                                 Balance
-                                <i   class="nav-arrow bi bi-chevron-right"></i>
+{{--                                <i   class="nav-arrow bi bi-chevron-right"></i>--}}
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
+                            <li class="nav-item menu-open">
                                 <a href="{{route('admin.balance.index')}}" class="nav-link">
-                                    <i class="nav-icon bi bi-circle"></i>
                                     <p>List</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item menu-open">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon bi bi-circle-fill" style="{{checkReview() ? 'color:blue;' : ''}}"></i>
+                            <div style="width: 1rem; height: 1rem; border-radius: 100px; {{checkReview() ? 'background-color: blue;' : 'background-color: white'}}"></div>
+{{--                            <i class="nav-icon bi bi-circle-fill" style="{{checkReview() ? 'color:blue;' : ''}}"></i>--}}
                             <p>
                                 Reviews (moderation)
-                                <i class="nav-arrow bi bi-chevron-right"></i>
+{{--                                <i class="nav-arrow bi bi-chevron-right"></i>--}}
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
+                            <li class="nav-item menu-open">
                                 <a href="{{route('admin.review.moderation')}}" class="nav-link">
-                                    <i class="nav-icon bi bi-circle"></i>
                                     <p>List</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item menu-open">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon bi bi-circle-fill"></i>
+                            <div style="width: 1rem; height: 1rem; border-radius: 100px; background-color: white"></div>
+{{--                            <i class="nav-icon bi bi-circle-fill"></i>--}}
                             <p>
                                 FAQ
-                                <i class="nav-arrow bi bi-chevron-right"></i>
+{{--                                <i class="nav-arrow bi bi-chevron-right"></i>--}}
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
+                            <li class="nav-item menu-open">
                                 <a href="{{route('admin.faq.index')}}" class="nav-link">
-                                    <i class="nav-icon bi bi-circle"></i>
                                     <p>List</p>
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
+                            <li class="nav-item menu-open">
                                 <a href="{{route('admin.faq.create')}}" class="nav-link">
-                                    <i class="nav-icon bi bi-circle"></i>
                                     <p>Add</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item menu-open">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon bi bi-circle-fill"></i>
+                            <div style="width: 1rem; height: 1rem; border-radius: 100px; background-color: white"></div>
+{{--                            <i class="nav-icon bi bi-circle-fill"></i>--}}
                             <p>
                                 Social network
-                                <i class="nav-arrow bi bi-chevron-right"></i>
+{{--                                <i class="nav-arrow bi bi-chevron-right"></i>--}}
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
+                            <li class="nav-item menu-open">
                                 <a href="{{route('admin.social.index')}}" class="nav-link">
-                                    <i class="nav-icon bi bi-circle"></i>
                                     <p>List</p>
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
+                            <li class="nav-item menu-open">
                                 <a href="{{route('admin.social.create')}}" class="nav-link">
-                                    <i class="nav-icon bi bi-circle"></i>
                                     <p>Add</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item menu-open">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon bi bi-circle-fill"></i>
+                            <div style="width: 1rem; height: 1rem; border-radius: 100px; background-color: white"></div>
+{{--                            <i class="nav-icon bi bi-circle-fill"></i>--}}
                             <p>
                                 Info (About us)
-                                <i class="nav-arrow bi bi-chevron-right"></i>
+{{--                                <i class="nav-arrow bi bi-chevron-right"></i>--}}
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
+                            <li class="nav-item menu-open">
                                 <a href="{{route('admin.info.index')}}" class="nav-link">
-                                    <i class="nav-icon bi bi-circle"></i>
                                     <p>List</p>
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
+                            <li class="nav-item menu-open">
                                 <a href="{{route('admin.info.create')}}" class="nav-link">
-                                    <i class="nav-icon bi bi-circle"></i>
                                     <p>Add</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item menu-open">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon bi bi-circle-fill"></i>
+                            <div style="width: 1rem; height: 1rem; border-radius: 100px; background-color: white"></div>
+{{--                            <i class="nav-icon bi bi-circle-fill"></i>--}}
                             <p>
                                 Triggers
-                                <i class="nav-arrow bi bi-chevron-right"></i>
+{{--                                <i class="nav-arrow bi bi-chevron-right"></i>--}}
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
+                            <li class="nav-item menu-open">
                                 <a href="{{route('admin.trigger.index')}}" class="nav-link">
-                                    <i class="nav-icon bi bi-circle"></i>
                                     <p>List</p>
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
+                            <li class="nav-item menu-open">
                                 <a href="{{route('admin.trigger.create')}}" class="nav-link">
-                                    <i class="nav-icon bi bi-circle"></i>
                                     <p>Add</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item menu-open">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon bi bi-circle-fill"></i>
+                            <div style="width: 1rem; height: 1rem; border-radius: 100px; background-color: white"></div>
+{{--                            <i class="nav-icon bi bi-circle-fill"></i>--}}
                             <p>
                                 Banners
-                                <i class="nav-arrow bi bi-chevron-right"></i>
+{{--                                <i class="nav-arrow bi bi-chevron-right"></i>--}}
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
+                            <li class="nav-item menu-open">
                                 <a href="{{route('admin.banner.index')}}" class="nav-link">
-                                    <i class="nav-icon bi bi-circle"></i>
                                     <p>List</p>
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
+                            <li class="nav-item menu-open">
                                 <a href="{{route('admin.banner.create')}}" class="nav-link">
-                                    <i class="nav-icon bi bi-circle"></i>
                                     <p>Add</p>
                                 </a>
                             </li>
@@ -414,6 +407,11 @@
     </footer>
     <!--end::Footer-->
 </div>
+<style>
+    .sidebar-wrapper .sidebar-menu > .nav-item.menu-open > .nav-link, .sidebar-wrapper .sidebar-menu > .nav-item:hover > .nav-link, .sidebar-wrapper .sidebar-menu > .nav-item > .nav-link:focus {
+        align-items: center;
+    }
+</style>
 <!--end::App Wrapper-->
 <!--begin::Script-->
 <!--begin::Third Party Plugin(OverlayScrollbars)-->

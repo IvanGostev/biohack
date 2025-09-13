@@ -13,10 +13,11 @@
 <body>
 <header class="header" id="header">
     <nav class="nav container">
+
         <div class="nav__left">
             <a href="{{route('index')}}" style="cursor: pointer; display: flex
 ;
-    align-items: center;" class="nav__logo" >
+    align-items: center;" class="nav__logo">
                 <img style="width: 50px; height: 50px; margin-right: 20px;" src="{{asset('img/back2.png')}}" alt="">
                 <p style="display: inline-block;     vertical-align: middle;">BIOHACKERS</p></a>
         </div>
@@ -26,6 +27,9 @@
             <a class="nav__item" href="/#faq">FAQ</a>
             <a class="nav__item" href="/#referral">REFERRAL PROGRAM</a>
             <a class="nav__item" href="/#contacts">CONTACTS</a>
+            @if(auth()->check() and auth()->user()->role == 'admin')
+                <a href="{{route('admin.product.index')}}">ADMIN</a>
+            @endif
         </ul>
         <ul class="nav__right">
             @auth
@@ -56,38 +60,63 @@
     <div class="container">
         <div class="account__left">
             <div class="account__user">
-                <img class="account__img" style="border-radius: 100px" src="{{ auth()->user()->avatar ? asset('storage/' . auth()->user()->avatar) : '/img/user.png' }}" alt="">
+                <img class="account__img" style="border-radius: 100px"
+                     src="{{ auth()->user()->avatar ? asset('storage/' . auth()->user()->avatar) : '/img/user.png' }}"
+                     alt="">
                 <div>
                     <h5 class="account__name">{{auth()->user()->name}}</h5>
-                    <h6 class="account__status">Status: <span>Not Verified</span></h6>
+                    <h6 class="account__status">Status:
+                        @if(auth()->user()->countOrders() >= 1)
+                            <span>Verified</span>
+                        @else
+                            <span>Not Verified</span>
+                        @endif
+                    </h6>
                 </div>
             </div>
             <form class="account__ul" action="{{route('logout')}}" method="post">
                 @csrf
-                <a href="{{route('profile.cart')}}" class="account__item {{request()->is('profile/cart') ? 'active' : ''}}">
-                    <img style="width: 16px; margin-top: 3px; margin-right: 5px" src="{{ asset('./img/cart.svg')}}" alt="">
+                <a href="{{route('profile.cart')}}"
+                   class="account__item {{request()->is('profile/cart') ? 'active' : ''}}">
+                    <img style="width: 16px; margin-top: 3px; margin-right: 5px" src="{{ asset('./img/cart.png')}}"
+                         alt="">
                     My Cart</a>
-                <a href="{{route('profile.referral')}}" class="account__item {{request()->is('profile/referral') ? 'active' : ''}}">
-                    <img style="width: 16px; margin-top: 3px; margin-right: 5px" src="{{ asset('./img/ref.svg')}}" alt="">
+                <a href="{{route('profile.referral')}}"
+                   class="account__item {{request()->is('profile/referral') ? 'active' : ''}}">
+                    <img style="width: 16px; margin-top: 3px; margin-right: 5px" src="{{ asset('./img/ref.png')}}"
+                         alt="">
                     Referral Program</a>
-                <a href="{{route('profile.status')}}" class="account__item {{request()->is('profile/status') ? 'active' : ''}}">
-                    <img style="width: 16px; margin-top: 3px; margin-right: 5px" src="{{ asset('./img/star.svg')}}" alt="">
+                <a href="{{route('profile.status')}}"
+                   class="account__item {{request()->is('profile/status') ? 'active' : ''}}">
+                    <img style="width: 16px; margin-top: 3px; margin-right: 5px" src="{{ asset('./img/star.png')}}"
+                         alt="">
                     Account Status</a>
-                <a style="display: flex; gap: 10px" href="{{route('profile.support')}}" class="account__item {{request()->is('profile/support') ? 'active' : ''}}">
-                    <img style="width: 16px; margin-top: 3px; margin-right: 5px" src="{{ asset('./img/message.svg')}}" alt="">
-                    Support @if(auth()->user()->newMessageCheck())<span style="display:block; width: 18px; height: 18px; background-color: #009d9a; border-radius: 100px "> </span>  @endif</a>
-                <a href="{{route('profile.balance')}}" class="account__item {{request()->is('profile/balance') ? 'active' : ''}}">
-                    <img style="width: 16px; margin-top: 3px; margin-right: 5px" src="{{ asset('./img/message.svg')}}" alt="">
+                <a style="display: flex; gap: 10px" href="{{route('profile.support')}}"
+                   class="account__item {{request()->is('profile/support') ? 'active' : ''}}">
+                    <img style="width: 16px; margin-top: 3px; margin-right: 5px" src="{{ asset('./img/message.png')}}"
+                         alt="">
+                    Support @if(auth()->user()->newMessageCheck())
+                        <span
+                            style="display:block; width: 18px; height: 18px; background-color: #009d9a; border-radius: 100px "> </span>
+                    @endif</a>
+                <a href="{{route('profile.balance')}}"
+                   class="account__item {{request()->is('profile/balance') ? 'active' : ''}}">
+                    <img style="width: 16px; margin-top: 3px; margin-right: 5px" src="{{ asset('./img/message.png')}}"
+                         alt="">
                     Balance</a>
-                <a href="{{route('profile.edit')}}" class="account__item {{request()->is('profile/edit') ? 'active' : ''}}">
-                    <img style="width: 16px; margin-top: 3px; margin-right: 5px" src="{{ asset('./img/edit.svg')}}" alt="">
+                <a href="{{route('profile.edit')}}"
+                   class="account__item {{request()->is('profile/edit') ? 'active' : ''}}">
+                    <img style="width: 16px; margin-top: 3px; margin-right: 5px" src="{{ asset('./img/edit.png')}}"
+                         alt="">
                     Edit Profile</a>
 
-                <button  class="account__item" style="
+                <button class="account__item" style="
               text-align: left; margin-top: 20px; color: #222222;
                 ">
-                    <img style="width: 16px; margin-top: 3px; margin-right: 5px" src="{{ asset('./img/logout.svg')}}" alt="">
-                    Log out</button>
+                    <img style="width: 16px; margin-top: 3px; margin-right: 5px" src="{{ asset('./img/logout.png')}}"
+                         alt="">
+                    Log out
+                </button>
             </form>
         </div>
         <div class="account__right">
@@ -135,7 +164,8 @@
 
         </div>
         <a href="#header" class="footer__btn">
-            <img src="{{ asset('./img/arrow-up.svg')}}" alt="" style="display:block; margin: 0 auto; padding-top: 14px;">
+            <img src="{{ asset('./img/arrow-up.png')}}" alt=""
+                 style="display:block; margin: 0 auto; padding-top: 14px;">
         </a>
     </div>
     <div class="footer__bottom">

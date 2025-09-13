@@ -3,7 +3,7 @@
     <section class="crumbs">
         <div class="container">
             <a href="{{route('index')}}">
-                <img src="{{asset('img/arrow-left-1.svg')}}" alt="">
+                <img src="{{asset('img/arrow-left-1.png')}}" alt="">
                 BACK</a>
         </div>
     </section>
@@ -14,11 +14,11 @@
                     @csrf
                     <input name="imageId" type="text" hidden value="{{$activeImage->id}}">
                     <button class="good__arrow left" name="action" value="left">
-                        <img src="{{asset('./img/arrow-left.svg')}}" alt="">
+                        <img src="{{asset('./img/arrow-left.png')}}" alt="">
                     </button>
                     <img class="good__img" src="{{asset('storage/' . $activeImage->patch)}}">
                     <button class="good__arrow right" name="action" value="right">
-                        <img src="{{asset('./img/arrow-right.svg')}}" alt="">
+                        <img src="{{asset('./img/arrow-right.png')}}" alt="">
                     </button>
                 </form>
                 <form method="get" class="good__photos" action="{{route('product', $product->id)}}">
@@ -87,11 +87,11 @@
                     <div class="good__count">
                         <input type="hidden" name="countActive" value="{{$countActive}}">
                         <button type="submit" name="minus" value="1" class="good__minus">
-                            <img src="{{asset('./img/minus.svg')}}" alt="">
+                            <img  src="{{asset('./img/minus.png')}}" alt="">
                         </button>
                         <p class="good_number">{{$countActive}}</p>
                         <button type="submit" name="plus" value="1" class="good__plus">
-                            <img src="{{asset('./img/add.svg')}}" alt="">
+                            <img src="{{asset('./img/add.png')}}" alt="">
                         </button>
                     </div>
 
@@ -140,7 +140,7 @@
                 </div>
 
                 <form class="reviews__right" href="#reviews">
-                    @if(!(auth()->user()->countReviews($product->id) > 0))
+                    @if(!((auth()->check() and auth()->user()->countReviews($product->id) > 0)))
                         <button class="reviews__btn" name="writeReview" value="display"
                                 style="display: {{($writeReview == 'display' or $errors->has('image')) ? 'none' : 'display'}}">WRITE A REVIEW
                         </button>

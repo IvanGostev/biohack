@@ -7,6 +7,7 @@ use App\Models\CartProduct;
 use App\Models\Chain;
 use App\Models\Faq;
 use App\Models\Info;
+use App\Models\Message;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\ProductReview;
@@ -166,7 +167,15 @@ class MainController extends Controller
                 ]);
             }
         }
-        return redirect()->route('product', $all['product_id']);
+
+        Message::create([
+            'text' => 'Your review has been submitted for moderation, and it will be available after verification.',
+            'status' => 'new',
+            'whom' => 'user',
+            'user_id' => auth()->user()->id
+        ]);
+        return redirect()->route('profile.support');
+//        return redirect()->route('product', $all['product_id']);
     }
 
     public function review_delete(Request $request)

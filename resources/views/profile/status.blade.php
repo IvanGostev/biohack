@@ -8,7 +8,11 @@
         </div>
         <div class="status">
             <p>Your current status:</p>
-            <h6>Not Verified</h6>
+            @if(auth()->user()->countOrders() >= 1)
+                <h6>Verified</h6>
+            @else
+                <h6>Not Verified</h6>
+            @endif
         </div>
     </div>
     <div class="account__glasses">

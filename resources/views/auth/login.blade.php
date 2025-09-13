@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Document</title>
+    <title>BIOHACKERS</title>
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
         rel="stylesheet"
@@ -25,8 +25,7 @@
         <h2 class="form__title">Log In </h2>
         @foreach($errors->all() as $error)
             <p>{{$error}}</p>
-            @endforeach()
-
+        @endforeach()
         <div class="input">
             <input type="text" name="name" placeholder="Username">
         </div>
@@ -39,7 +38,12 @@
             <p class="between__center">or</p>
             <div class="between__left"></div>
         </div>
-        <button class="form__btn telegram">TELEGRAM</button>
+        <a href="#" class="form__btn telegram" style="display: flex;
+    align-items: center;
+    justify-content: center;
+}">
+            <p>TELEGRAM</p>
+            </a>
         <p class="form__already">
             Already have an account? <a href='{{route('register')}}'>Sign Up</a>
         </p>

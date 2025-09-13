@@ -27,11 +27,11 @@
                     @csrf
                     <input type="text" hidden name="id" value="{{$item->id}}">
                     <button name="action" value="minus" type='submit' class="account__minus">
-                        <img style="height: auto" src="{{asset('./img/minus.svg')}}" alt="">
+                        <img style="height: auto" src="{{asset('./img/minus.png')}}" alt="">
                     </button>
                     <div class="account__number">{{$item->count}}</div>
                     <button name="action" value="plus" type='submit' class="account__plus">
-                        <img style="height: auto" src="{{asset('./img/add.svg')}}" alt="">
+                        <img style="height: auto" src="{{asset('./img/add.png')}}" alt="">
                     </button>
                 </form>
 
@@ -40,7 +40,7 @@
                     <input type="text" hidden name="id" value="{{$item->id}}">
                     <p class="price">${{$item->product()->price * $item->count}}</p>
                     <button name="action" value="delete" type='submit' class="cross">
-                        <img style="height: auto" src="{{asset('./img/cross.svg')}}" alt="">
+                        <img style="height: auto" src="{{asset('./img/cross.png')}}" alt="">
                     </button>
                 </form>
 

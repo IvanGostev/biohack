@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>BIOHACKERS</title>
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
         rel="stylesheet"
@@ -37,7 +37,12 @@
             <p class="between__center">or</p>
             <div class="between__left"></div>
         </div>
-        <button class="form__btn telegram">TELEGRAM</button>
+        <a class="form__btn telegram" href="#" style="display: flex;
+    align-items: center;
+    justify-content: center;
+}">
+            <p>TELEGRAM</p>
+        </a>
         <p class="form__already">
             Already have an account? <a href='{{route('login')}}'>Log in</a>
         </p>

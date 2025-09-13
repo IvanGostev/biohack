@@ -1,19 +1,16 @@
 @extends('layouts.profile')
 @section('content')
-
     <div class="account__badge">
         <div style="background-color: white; width: 52px; height: 52px; border-radius: 100px; margin: 0 14px ">
-            <img src="{{asset('img/messages.svg')}}" alt="" style="display:block; margin: 0 auto">
+            <img src="{{asset('img/messages.png')}}" alt="" style="display:block; margin: 0 auto">
         </div>
-
         <p>Support Chat</p>
     </div>
-    <div class="account__chat">
+    <div class="account__chat" style="	overflow-y: auto;">
         @foreach($messages as $message)
             <div class="account__message{{$message->whom == 'user' ? 'left' : ''}}">
                 <p style="padding-bottom: 5px; font-weight: 600; font-size: 14px">{{$message->whom == 'user' ? 'Support' : auth()->user()->name}}</p>
                 <div class="main" style="display: flex; gap: 10px;">
-
                     <img
                         @if($message->whom == 'user')
                             src="{{asset('img/back2.png')}}"
@@ -39,7 +36,7 @@
             <input required type="text" name="text" placeholder="Type your message...">
         </div>
         <button class="btn" type="submit">
-            <img src="{{asset('/img/send.svg')}}" alt="" style="transform: rotate(345deg)">
+            <img src="{{asset('/img/send.png')}}" alt="">
         </button>
     </form>
 @endsection

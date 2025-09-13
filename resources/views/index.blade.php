@@ -4,9 +4,9 @@
     <section class="banner">
         <div class="container" style="background-image: url({{asset('storage/' . banner()->img)}})!important">
             <div class="banner__main">
-                <h4 class="banner__title">{!! banner()->title !!}}</h4>
+                <h4 class="banner__title">{!! banner()->title !!}</h4>
                 <p class="banner__descritpion">
-                    {!! banner()->text !!}}
+                    {!! banner()->text !!}
                 </p>
                 <a href="{{banner()->btnlink}}" class="banner__btn"><p>{{banner()->btntext}}</p></a>
             </div>

@@ -68,12 +68,11 @@ section {
     padding-bottom: 32px;
 }
 .banner__btn {
-    display: block;
+    display: inline-block;
     font-size: 14px;
     padding: 10px 66px;
     background-color: white;
     color: #009d9a;
-    max-width: 208px;
     text-transform: uppercase;
     border-radius: 100px;
 }
@@ -1186,3 +1185,29 @@ summary:focus {
     display: flex;
     gap: 8px;
 }
+
+details > summary {
+    list-style: none;
+}
+details > summary::-webkit-details-marker {
+    display: none;
+}
+
+details > summary::before {
+    content: '';
+    display: block;
+    background-image: url('../img/add.png');
+    width: 40px;
+    height: 40px;
+}
+
+details[open] > summary::before {
+    content: '';
+    display: block;
+    background-image: url('../img/minus.png');
+    width: 40px;
+    height: 40px;
+}
+/*summary::before {*/
+/*    background: url('../img/add.png');*/
+/*}*/

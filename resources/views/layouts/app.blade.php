@@ -16,7 +16,7 @@
         <div class="nav__left">
             <a href="{{route('index')}}" style="cursor: pointer; display: flex
 ;
-    align-items: center;" class="nav__logo" >
+    align-items: center;" class="nav__logo">
                 <img style="width: 50px; height: 50px; margin-right: 20px;" src="{{asset('img/back2.png')}}" alt="">
                 <p style="display: inline-block;     vertical-align: middle;">BIOHACKERS</p></a>
         </div>
@@ -26,6 +26,9 @@
             <a class="nav__item" href="/#faq">FAQ</a>
             <a class="nav__item" href="/#referral">REFERRAL PROGRAM</a>
             <a class="nav__item" href="/#contacts">CONTACTS</a>
+            @if(auth()->check() and auth()->user()->role == 'admin')
+                <a href="{{route('admin.product.index')}}">ADMIN</a>
+            @endif
         </ul>
         <ul class="nav__right">
             @auth
@@ -82,7 +85,7 @@
 
         </div>
         <a href="#header" class="footer__btn">
-            <img src="{{ asset('./img/arrow-up.svg')}}" alt=""
+            <img src="{{ asset('./img/arrow-up.png')}}" alt=""
                  style="display:block; margin: 0 auto; padding-top: 14px;">
         </a>
     </div>
